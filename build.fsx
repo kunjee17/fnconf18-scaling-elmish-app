@@ -14,7 +14,7 @@ let gitHome = "https://github.com/" + gitOwner
 // The name of the project on GitHub
 let gitProjectName = "fnconf18-scaling-elmish-app"
 // The name of the GitHub repo subdirectory to publish slides to
-let gitSubDir = "docs"
+let gitSubDir = ""
 
 open FsReveal
 open Fake
