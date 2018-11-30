@@ -1,164 +1,239 @@
-- title : FsReveal
-- description : Introduction to FsReveal
-- author : Karlkim Suwanmongkol
-- theme : night
-- transition : default
+- title : Scaling Elmish App
+- description : How to Scale Elmish App
+- author : Kunjan Dalal
+- theme : white
+- transition : none
+
+***
+- data-background-image: images/22.png
+
+<div style="background:white;">
+<br/>
+## Scaling Fable Elmish / Elm Application
+### A Experience Report
+
+<br />
+### Kunjan Dalal
+### @kunjee
+<br />
+</div>
+
+' Skip the Intro because of less time
+
+***
+- data-background-image: images/94.png
+
+<div style="background:white;">
+<br/>
+
+### Slide Agenda
+
+- <s>Intro to me</s>
+- Intro to Fable & Fable.Elmish
+- <s>Intro to Elm</s>
+- <s>Basic Example</s>
+- <s>The Elm Architecture - TEA </s>
+<!-- - Past - All the W question answered  -->
+<!-- - Back End, Front End and more Front End -->
+<!-- - The Model -->
+<!-- - The View -->
+<!-- - The Update -->
+- Go Beyond Todo list
+- Why Elmish instead of Elm
+- <s>External JS library in Fable Elmish </s>
+- <s>External React library in Fable Elmish </s>
+- SAFE stack
+- Thank You Note
+
+</div>
+
+' This talk was around 45 mins but cut down due to other wonderful talk. So, I have to do tight editing on slides. We have lot to cover so let's get started. I am cutting down few basic stuff as you might already learn that in wonderful talks happens before this one
 
 ***
 
-### What is FsReveal?
+### Intro to Fable & Fable Elmish
 
-- Generates [reveal.js](http://lab.hakim.se/reveal-js/#/) presentation from [markdown](http://daringfireball.net/projects/markdown/)
-- Utilizes [FSharp.Formatting](https://github.com/tpetricek/FSharp.Formatting) for markdown parsing
-- Get it from [http://fsprojects.github.io/FsReveal/](http://fsprojects.github.io/FsReveal/)
+ > Fable is an F# to JavaScript compiler powered by Babel, designed to produce readable and standard code.
 
-![FsReveal](images/logo.png)
+ <br/>
 
-***
+ > Elmish implements core abstractions that can be used to build Fable applications following the “model view update” style of architecture, as made famous by Elm.
 
-### Reveal.js
-
-- A framework for easily creating beautiful presentations using HTML.
-
-
-> **Atwood's Law**: any application that can be written in JavaScript, will eventually be written in JavaScript.
-
-***
-
-### FSharp.Formatting
-
-- F# tools for generating documentation (Markdown processor and F# code formatter).
-- It parses markdown and F# script file and generates HTML or PDF.
-- Code syntax highlighting support.
-- It also evaluates your F# code and produce tooltips.
-
-***
-
-### Syntax Highlighting
-
-#### F# (with tooltips)
-
-    let a = 5
-    let factorial x = [1..x] |> List.reduce (*)
-    let c = factorial a
+' There are two different thing in Fable Elmish
 
 ---
 
-#### C#
+![](images/fable_logo.png)
 
-    [lang=cs]
-    using System;
+---
 
-    class Program
-    {
-        static void Main()
-        {
-            Console.WriteLine("Hello, world!");
-        }
+##### F# unit of Measure code
+
+```fsharp
+    module Tour.UnitsOfMeasure
+
+    // From https://docs.microsoft.com/en-us/dotnet/fsharp/tour
+    open Microsoft.FSharp.Data.UnitSystems.SI.UnitNames
+
+    let sampleValue1 = 1600.0<meter>
+
+    [<Measure>]
+    type mile =
+        static member asMeter = 1609.34<meter/mile>
+
+    let sampleValue2 = 500.0<mile>
+
+    let sampleValue3 = sampleValue2 * mile.asMeter
+
+    printfn "After a %f race I would walk %f miles
+            which would be %f meters" sampleValue1 sampleValue2 sampleValue3
+
+```
+---
+
+##### Converted Java Script Code
+
+```js
+    import { toConsole, printf } from "fable-core/String";
+    export const sampleValue1 = 1600;
+    export function mile$$$get_asMeter() {
+    return 1609.34;
     }
-
----
-
-#### JavaScript
-
-    [lang=js]
-    function copyWithEvaluation(iElem, elem) {
-        return function (obj) {
-            var newObj = {};
-            for (var p in obj) {
-                var v = obj[p];
-                if (typeof v === "function") {
-                    v = v(iElem, elem);
-                }
-                newObj[p] = v;
-            }
-            if (!newObj.exactTiming) {
-                newObj.delay += exports._libraryDelay;
-            }
-            return newObj;
-        };
-    }
-
-
----
-
-#### Haskell
- 
-    [lang=haskell]
-    recur_count k = 1 : 1 : 
-        zipWith recurAdd (recur_count k) (tail (recur_count k))
-            where recurAdd x y = k * x + y
-
-    main = do
-      argv <- getArgs
-      inputFile <- openFile (head argv) ReadMode
-      line <- hGetLine inputFile
-      let [n,k] = map read (words line)
-      printf "%d\n" ((recur_count k) !! (n-1))
-
-*code from [NashFP/rosalind](https://github.com/NashFP/rosalind/blob/master/mark_wutka%2Bhaskell/FIB/fib_ziplist.hs)*
-
----
-
-### SQL
-
-    [lang=sql]
-    select *
-    from
-    (select 1 as Id union all select 2 union all select 3) as X
-    where Id in (@Ids1, @Ids2, @Ids3)
-
-*sql from [Dapper](https://code.google.com/p/dapper-dot-net/)*
-
----
-
-### Paket
-
-    [lang=paket]
-    source https://nuget.org/api/v2
-
-    nuget Castle.Windsor-log4net >= 3.2
-    nuget NUnit
-    
-    github forki/FsUnit FsUnit.fs
-      
----
-
-### C/AL
-
-    [lang=cal]
-    PROCEDURE FizzBuzz(n : Integer) r_Text : Text[1024];
-    VAR
-      l_Text : Text[1024];
-    BEGIN
-      r_Text := '';
-      l_Text := FORMAT(n);
-
-      IF (n MOD 3 = 0) OR (STRPOS(l_Text,'3') > 0) THEN
-        r_Text := 'Fizz';
-      IF (n MOD 5 = 0) OR (STRPOS(l_Text,'5') > 0) THEN
-        r_Text := r_Text + 'Buzz';
-      IF r_Text = '' THEN
-        r_Text := l_Text;
-    END;
+    export const sampleValue2 = 500;
+    export const sampleValue3 = sampleValue2 * mile$$$get_asMeter();
+    toConsole(
+        printf("After a %f race I would walk %f miles which would be %f meters"))
+            (sampleValue1)(sampleValue2)(sampleValue3);
+```
 
 ***
 
-**Bayes' Rule in LaTeX**
+### Elmish
 
-$ \Pr(A|B)=\frac{\Pr(B|A)\Pr(A)}{\Pr(B|A)\Pr(A)+\Pr(B|\neg A)\Pr(\neg A)} $
+![](images/elmish.png)
+
+---
+
+##### Elmish - Types
+
+```fsharp
+    type Model =
+        { Value : string }
+
+    type Msg =
+        | ChangeValue of string
+```
+
+---
+
+##### Elmish - State
+
+```fsharp
+    let init () = { Value = "" }, Cmd.none
+
+    // UPDATE
+
+    let update (msg:Msg) (model:Model) =
+        match msg with
+        | ChangeValue newValue ->
+            { Value = newValue }, Cmd.none
+```
+
+---
+
+##### Elmish - View
+
+```fsharp
+    let view model dispatch =
+        div [ Class "main-container" ]
+            [ input [ Class "input"
+                    Value model.Value
+                    OnChange (fun ev -> ev.target?value |>
+                                string |> ChangeValue |> dispatch) ]
+            span [ ]
+                [ str "Hello, "
+                str model.Value
+                str "!" ] ]
+```
+
+---
+
+##### Elmish - Main
+
+```fsharp
+    // App
+    Program.mkProgram init update view
+    |> Program.withConsoleTrace
+    |> Program.withReact "elmish-app"
+    |> Program.run
+```
+
 
 ***
 
-### The Reality of a Developer's Life 
+### What is SPA ?
 
-**When I show my boss that I've fixed a bug:**
-  
-![When I show my boss that I've fixed a bug](http://www.topito.com/wp-content/uploads/2013/01/code-07.gif)
-  
-**When your regular expression returns what you expect:**
-  
-![When your regular expression returns what you expect](http://www.topito.com/wp-content/uploads/2013/01/code-03.gif)
-  
-*from [The Reality of a Developer's Life - in GIFs, Of Course](http://server.dzone.com/articles/reality-developers-life-gifs)*
+![](images/Deathly_Hallows_Sign.svg)
 
+' what promise was simple thing. html, js and css. And you know SPA. You know everything about it. But
+
+---
+
+- data-background-image: images/triangles.gif
+
+***
+
+### Let's look at a Normal Big Application
+
+---
+
+Here will show code from my project - specifically how components are arranged. yet to decide gif or screen shot will be good option
+
+---
+
+### Let's Talk about model
+
+---
+
+### Let's Talk about update
+
+---
+
+### Let's Talk about view
+
+
+***
+
+### Why I chose Elmish instead of Elm ?
+
+---
+
+### What is Elm?
+
+
+![](images/00-Mercedes-Benz-Design-Future-Bus.jpg)
+
+---
+
+### Who all are in JavaScript / React Community?
+
+
+![](images/holi.jpg)
+
+---
+
+### What is Elmish?
+
+![](images/banbus.jpg)
+
+---
+
+React Quill and Izitoast example
+
+***
+
+SAFE Stack
+
+***
+
+Thank You Note
