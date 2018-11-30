@@ -59,7 +59,7 @@
 
  > Elmish implements core abstractions that can be used to build Fable applications following the “model view update” style of architecture, as made famous by Elm.
 
-' There are two different thing in Fable Elmish
+' There are two different things in Fable Elmish. Fable and Fable-Elmish or Elmish it self. Let's have a loot at both.
 
 ---
 
@@ -89,6 +89,9 @@
             which would be %f meters" sampleValue1 sampleValue2 sampleValue3
 
 ```
+
+' Simple F# code with it's specific Unit of Measure feature. A tight guard against how you define units. Specially useful in Finance and Science / Mathematics obviously.
+
 ---
 
 ##### Converted Java Script Code
@@ -105,6 +108,8 @@
         printf("After a %f race I would walk %f miles which would be %f meters"))
             (sampleValue1)(sampleValue2)(sampleValue3);
 ```
+
+' Look at this . A very readable JavaScript. Which then pass on to Bable to boil down to normal JavaScript which can be understood by browser.
 
 ***
 
@@ -124,6 +129,8 @@
         | ChangeValue of string
 ```
 
+' Your routine model. With 1 property of type String. To change that we need to pass message of value string.
+
 ---
 
 ##### Elmish - State
@@ -138,6 +145,8 @@
         | ChangeValue newValue ->
             { Value = newValue }, Cmd.none
 ```
+
+' Init is initializing with empty value and then update will take care of every change.
 
 ---
 
@@ -156,6 +165,8 @@
                 str "!" ] ]
 ```
 
+' Here is simple view which takes the value, pass in to update and show the updated value.
+
 ---
 
 ##### Elmish - Main
@@ -168,6 +179,7 @@
     |> Program.run
 ```
 
+' And Here things wire up. So, as promised nothing different from your Elm application.
 
 ***
 
@@ -189,6 +201,9 @@
 
 Here will show code from my project - specifically how components are arranged. yet to decide gif or screen shot will be good option
 
+Here there are two options. Either directly go to pointers one can take care about or explain in terms of model, update and view.
+
+
 ---
 
 ### Let's Talk about model
@@ -205,6 +220,10 @@ Here will show code from my project - specifically how components are arranged. 
 ***
 
 ### Why I chose Elmish instead of Elm ?
+
+A funny gif would be great here.
+
+' If everything is possible in Elm then why I choose Elmish? Let me explain how I see Elm and Elmish and then I ll explain why I choose one over another.
 
 ---
 
@@ -230,10 +249,18 @@ Here will show code from my project - specifically how components are arranged. 
 
 React Quill and Izitoast example
 
+' Because of Time Constrain I can't go into details. But here are the examples on how you can easily integrate React or Pure JS component.
+
 ***
 
 SAFE Stack
 
+' Honorary mention of SAFE Stack. What is safe stack and that matters ? Why writing everything in F# helps. Explain as per time.
+
 ***
 
 Thank You Note
+
+- A image or simple details ?
+
+' Questions if time permits. Fuzzy Cloud link. Available for consulting. Cards available etc etc. Tweet to Fable Compiler or Tweet to me in case of feedback.
