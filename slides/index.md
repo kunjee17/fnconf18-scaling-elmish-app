@@ -39,7 +39,7 @@
 - <s>External JS library in Fable Elmish </s>
 - <s>External React library in Fable Elmish </s>
 - <s>SAFE stack</s>
-- Thank You Note
+- Thank You!!!
 
 
 
@@ -246,61 +246,150 @@
 
 ***
 
-### Let's Talk about model
+### Let's Talk about Model
+
 
 ---
 
-### Let's Talk about update
+### Application & Authentication
+
+```fsharp
+// Auth and App
+```
+
+
+' User can access on module and one can't. If you are starting your application and you are having user authentication then do separate them. For starting 2 - 3 pages it feels like
+' it is ok to pages together. But as you grow there will be a lot more repeated code to check user before reaching out every page.
+' Pro tip - Use JWT if you are still not using it. It is nice to have when you are developing State less application
 
 ---
 
-### Let's Talk about view
+### Page Model
 
+```fsharp
+
+```
+' There are two ways of writing page. As shown here. But having page model as option type always help. You are only loading data that is required for that specific page.
+' Pro tip - You can group pages by Navigation. So, one less naming problem solve. Also, it helps to have authorization feature abstracted away. So, user is not allowed in admin
+' navigation if he is not admin
+
+---
+
+### Page - Model
+
+```fsharp
+
+```
+
+' Divide your page in multiple component. Even if your page is having single big form, divide that in logical group. It always help to manage small chunks of code compare to big chunk.
+' And even as simple as simple entry forms are doing many things, like validation clint side and validation on server side in some case.
+' Features like auto complete requires both server and client side code.
+
+---
+
+### Component Model
+
+' Before we talk about Component model let's take a little break
+
+---
+
+![](images/break.gif)
+
+---
+
+### Domain - Driven - Design
+
+
+---
+
+### Domain Model on Client Side
+
+```fsharp
+```
+
+---
+
+### Flatten the model
+
+```fsharp
+```
 
 ***
 
-### Why I chose Elmish instead of Elm ?
+### Let's Talk about Command
 
-A funny gif would be great here.
+---
+
+### Single Responsibly Principal
+
+```fsharp
+```
+
+---
+### Subscribe is there to Use
+
+```fsharp
+```
+
+***
+
+### Let's Talk about View
+
+---
+- data-background-image: images/catgroup.jpg
+
+---
+
+### Use CSS Wrappers like Fulma
+
+```fsharp
+```
+
+***
+
+### Why I chose Elmish?
 
 ' If everything is possible in Elm then why I choose Elmish? Let me explain how I see Elm and Elmish and then I ll explain why I choose one over another.
 
 ---
 
-### What is Elm?
+### Recharts
 
+```fsharp
+```
+' Rechart code to give example that how easy it is to use react libraries.
 
-![](images/00-Mercedes-Benz-Design-Future-Bus.jpg)
-
----
-
-### Who all are in JavaScript / React Community?
-
-
-![](images/holi.jpg)
-
----
-
-### What is Elmish?
-
-![](images/banbus.jpg)
-
----
-
-React Quill and Izitoast example
-
-' Because of Time Constrain I can't go into details. But here are the examples on how you can easily integrate React or Pure JS component.
 
 ***
 
-SAFE Stack
+## Thank You
 
-' Honorary mention of SAFE Stack. What is safe stack and that matters ? Why writing everything in F# helps. Explain as per time.
+---
 
-***
+- Awesome Fable - [https://github.com/kunjee17/awesome-fable](https://github.com/kunjee17/awesome-fable)
+- Safe Stack - [https://safe-stack.github.io/](https://safe-stack.github.io/)
+- WTF# Elmish - [https://wtfsharp.net/wtf-is-elmish](https://wtfsharp.net/wtf-is-elmish)
+- Fulma - [https://mangelmaxime.github.io/Fulma/](https://mangelmaxime.github.io/Fulma/)
+- Fable - [https://fable.io/](https://fable.io/)
 
-Thank You Note
+---
 
-- A image or simple details ?
+- Fuzzy Cloud - [https://fuzzycloud.in/](https://fuzzycloud.in/)
+- Fable Compiler @ Twitter - [@FableCompiler](https://twitter.com/FableCompiler)
+- Me @ Twitter - [@kunjee](https://twitter.com/kunjee)
 
-' Questions if time permits. Fuzzy Cloud link. Available for consulting. Cards available etc etc. Tweet to Fable Compiler or Tweet to me in case of feedback.
+---
+
+Slides - [https://kunjee17.github.io/fnconf18-scaling-elmish-app/#/](https://kunjee17.github.io/fnconf18-scaling-elmish-app/#/)
+
+
+' Here is awesome fable link where I maintaining all awesome stuff happening in Fable
+' Safe - stack is just like mean stack but everything in F#. Even if you are not interested in F# then also do check it out.
+' It is recently featured for Thought works Tech radar.
+' And I personally feel that every Functional Programming language should have similar kind of stack
+' What the F# podcast for Elmish. Where me and Alfonso Garcia Caro was guest
+' Fuzzy Cloud is consulting things I started for almost a year. I am available for training and consulting for everything related to Functional Programming.
+' I also have my visiting card with me if any one like to have.
+' If you have enjoyed this talk please tag Fable Compiler and me if you wish with your good comments.
+' For any kind of inputs or criticism please contact me and will try to improve in next talk.
+' Any questions ? Else I am available here only for today at least. Do contact me.
