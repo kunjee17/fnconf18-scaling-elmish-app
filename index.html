@@ -14,7 +14,7 @@
     <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link rel="stylesheet" href="css/theme/serif.css" id="theme">
     <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
     <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
     <link type="text/css" rel="stylesheet" href="css/custom.css" />
@@ -59,28 +59,23 @@
 
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
-            <section data-background-image="images/22.png">
-<div style="background:white;">
-<br/>
+            <section >
 <h2>Scaling Fable Elmish / Elm Application</h2>
-<h3>A Experience Report</h3>
+<h3>A Experience Report By</h3>
 <br />
 <h3>Kunjan Dalal</h3>
 <h3>@kunjee</h3>
 <br />
-</div>
 <aside class="notes">
 Skip the Intro because of less time<br/>
 </aside>
 </section>
-<section data-background-image="images/94.png">
-<div style="background:white;">
-<br/>
-<h3>Slide Agenda</h3>
+<section >
+<h3>Agenda for Today</h3>
 <ul>
 <li><s>Intro to me</s></li>
-<li>Intro to Fable &amp; Fable.Elmish</li>
 <li><s>Intro to Elm</s></li>
+<li>Intro to Fable &amp; Fable.Elmish</li>
 <li><s>Basic Example</s></li>
 <li>
 <s>The Elm Architecture - TEA </s>
@@ -90,19 +85,43 @@ Skip the Intro because of less time<br/>
 <!-- - The View -->
 <!-- - The Update -->
 </li>
-<li>Go Beyond Todo list</li>
+<li>Tips and Tricks for Scaling your Application</li>
 <li>Why Elmish instead of Elm</li>
 <li><s>External JS library in Fable Elmish </s></li>
 <li><s>External React library in Fable Elmish </s></li>
-<li>SAFE stack</li>
-<li>Thank You Note</li>
+<li><s>SAFE stack</s></li>
+<li>Thank You!!!</li>
 </ul>
-</div>
 <aside class="notes">
 This talk was around 45 mins but cut down due to other wonderful talk. So, I have to do tight editing on slides. We have lot to cover so let's get started. I am cutting down few basic stuff as you might already learn that in wonderful talks happens before this one<br/>
 </aside>
 </section>
 <section >
+<h3>Pop Quiz Time</h3>
+<p><img src="images/riddler.gif" alt="" /></p>
+<aside class="notes">
+How many of you know about Elm?<br/>
+How many are using Elm in production application? As a whole app or part of it?<br/>
+This is important question -> How many of you feels that they attend a conference and that nice demo application never get converted to full blown application?<br/>
+</aside>
+</section>
+<section >
+<section >
+<s>
+<h3>Demo</h3>
+</s>
+<aside class="notes">
+We will not see any demo today<br/>
+Instead will talk about past, more about what is possible in contrast to what can be possible<br/>
+</aside>
+</section>
+<section >
+<h3>Why Code Samples are in F#?</h3>
+<blockquote>
+<p>It is a mainstream - general purpose functional programming language for your daily web and mobile need. It is strongly typed and it works everywhere. It is #fsharp</p>
+</blockquote>
+</section>
+</section>
 <section >
 <h3>Intro to Fable &amp; Fable Elmish</h3>
 <blockquote>
@@ -113,10 +132,12 @@ This talk was around 45 mins but cut down due to other wonderful talk. So, I hav
 <p>Elmish implements core abstractions that can be used to build Fable applications following the “model view update” style of architecture, as made famous by Elm.</p>
 </blockquote>
 <aside class="notes">
-There are two different things in Fable Elmish. Fable and Fable-Elmish or Elmish it self. Let's have a loot at both.<br/>
+There are two different things in Fable Elmish. Fable and Fable-Elmish or Elmish it self. Let's have a look at both.<br/>
 </aside>
 </section>
 <section >
+<section >
+<h3>Fable</h3>
 <p><img src="images/fable_logo.png" alt="" /></p>
 </section>
 <section >
@@ -161,6 +182,7 @@ There are two different things in Fable Elmish. Fable and Fable-Elmish or Elmish
 </table>
 <aside class="notes">
 Simple F# code with it's specific Unit of Measure feature. A tight guard against how you define units. Specially useful in Finance and Science / Mathematics obviously.<br/>
+It is basically like Scalajs or Cloujure Script converting respective language to JavaScript.<br/>
 </aside>
 </section>
 <section >
@@ -290,9 +312,16 @@ Here is simple view which takes the value, pass in to update and show the update
 </tr>
 </table>
 <aside class="notes">
-And Here things wire up. So, as promised nothing different from your Elm application.<br/>
+And here is wire up code. So, not much different then your regular Elm code. Or for that case any code which follows elm architecture.<br/>
 </aside>
 </section>
+</section>
+<section >
+<h3>Back End - Front End - Back End - Front End - Back End</h3>
+<p><img src="images/backfront.gif" alt="" /></p>
+<aside class="notes">
+I love back end and made a career out of it, and I strongly believe that front end is also required good architecture, Nowadays it is more required. So, today will be talking about that front end part.<br/>
+</aside>
 </section>
 <section >
 <section >
@@ -305,64 +334,178 @@ what promise was simple thing. html, js and css. And you know SPA. You know ever
 <section data-background-image="images/triangles.gif">
 </section>
 </section>
-<section >
-<section >
-<h3>Let's look at a Normal Big Application</h3>
-</section>
-<section >
-<p>Here will show code from my project - specifically how components are arranged. yet to decide gif or screen shot will be good option</p>
-<p>Here there are two options. Either directly go to pointers one can take care about or explain in terms of model, update and view.</p>
-</section>
-<section >
-<h3>Let's Talk about model</h3>
-</section>
-<section >
-<h3>Let's Talk about update</h3>
-</section>
-<section >
-<h3>Let's Talk about view</h3>
-</section>
+<section data-background-image="images/oldman.jpeg">
+<aside class="notes">
+Today I will be providing tips and tricks. And I hope you will take it as it is just like you will take words of wise old man without asking for more reasons. Respecting time noting else.<br/>
+</aside>
 </section>
 <section >
 <section >
-<h3>Why I chose Elmish instead of Elm ?</h3>
-<p>A funny gif would be great here.</p>
+<h3>Model - View - Update</h3>
+<aside class="notes">
+In MVU architecture I feel that model is most important. As it is message between update and view. And who ever control the message, controls the narrative.<br/>
+</aside>
+</section>
+<section data-background-image="images/news.gif">
+<aside class="notes">
+So, my tips and tricks will start from that only.<br/>
+</aside>
+</section>
+</section>
+<section >
+<section >
+<h3>Let's Talk about Model</h3>
+</section>
+<section >
+<h3>Application &amp; Authentication</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Auth and App</span>
+</code></pre></td>
+</tr>
+</table>
+<aside class="notes">
+User can access on module and one can't. If you are starting your application and you are having user authentication then do separate them. For starting 2 - 3 pages it feels like<br/>
+it is ok to pages together. But as you grow there will be a lot more repeated code to check user before reaching out every page.<br/>
+Pro tip - Use JWT if you are still not using it. It is nice to have when you are developing State less application<br/>
+</aside>
+</section>
+<section >
+<h3>Page Model</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+</tr>
+</table>
+<aside class="notes">
+There are two ways of writing page. As shown here. But having page model as option type always help. You are only loading data that is required for that specific page.<br/>
+Pro tip - You can group pages by Navigation. So, one less naming problem solve. Also, it helps to have authorization feature abstracted away. So, user is not allowed in admin<br/>
+navigation if he is not admin<br/>
+</aside>
+</section>
+<section >
+<h3>Page - Model</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+</tr>
+</table>
+<aside class="notes">
+Divide your page in multiple component. Even if your page is having single big form, divide that in logical group. It always help to manage small chunks of code compare to big chunk.<br/>
+And even as simple as simple entry forms are doing many things, like validation clint side and validation on server side in some case.<br/>
+Features like auto complete requires both server and client side code.<br/>
+</aside>
+</section>
+<section >
+<h3>Component Model</h3>
+<aside class="notes">
+Before we talk about Component model let's take a little break<br/>
+</aside>
+</section>
+<section >
+<p><img src="images/break.gif" alt="" /></p>
+</section>
+<section >
+<h3>Domain - Driven - Design</h3>
+</section>
+<section >
+<h3>Domain Model on Client Side</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h3>Flatten the model</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+</tr>
+</table>
+</section>
+</section>
+<section >
+<section >
+<h3>Let's Talk about Command</h3>
+</section>
+<section >
+<h3>Single Responsibly Principal</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h3>Subscribe is there to Use</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+</tr>
+</table>
+</section>
+</section>
+<section >
+<section >
+<h3>Let's Talk about View</h3>
+</section>
+<section data-background-image="images/catgroup.jpg">
+</section>
+<section >
+<h3>Use CSS Wrappers like Fulma</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+</tr>
+</table>
+</section>
+</section>
+<section >
+<section >
+<h3>Why I chose Elmish?</h3>
 <aside class="notes">
 If everything is possible in Elm then why I choose Elmish? Let me explain how I see Elm and Elmish and then I ll explain why I choose one over another.<br/>
 </aside>
 </section>
 <section >
-<h3>What is Elm?</h3>
-<p><img src="images/00-Mercedes-Benz-Design-Future-Bus.jpg" alt="" /></p>
-</section>
-<section >
-<h3>Who all are in JavaScript / React Community?</h3>
-<p><img src="images/holi.jpg" alt="" /></p>
-</section>
-<section >
-<h3>What is Elmish?</h3>
-<p><img src="images/banbus.jpg" alt="" /></p>
-</section>
-<section >
-<p>React Quill and Izitoast example</p>
+<h3>Recharts</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+</tr>
+</table>
 <aside class="notes">
-Because of Time Constrain I can't go into details. But here are the examples on how you can easily integrate React or Pure JS component.<br/>
+Rechart code to give example that how easy it is to use react libraries.<br/>
 </aside>
 </section>
 </section>
 <section >
-<p>SAFE Stack</p>
-<aside class="notes">
-Honorary mention of SAFE Stack. What is safe stack and that matters ? Why writing everything in F# helps. Explain as per time.<br/>
-</aside>
+<section >
+<h2>Thank You</h2>
 </section>
 <section >
-<p>Thank You Note</p>
 <ul>
-<li>A image or simple details ?</li>
+<li>Awesome Fable - <a href="https://github.com/kunjee17/awesome-fable"><a href="https://github.com/kunjee17/awesome-fable">https://github.com/kunjee17/awesome-fable</a></a></li>
+<li>Safe Stack - <a href="https://safe-stack.github.io/"><a href="https://safe-stack.github.io/">https://safe-stack.github.io/</a></a></li>
+<li>WTF# Elmish - <a href="https://wtfsharp.net/wtf-is-elmish"><a href="https://wtfsharp.net/wtf-is-elmish">https://wtfsharp.net/wtf-is-elmish</a></a></li>
+<li>Fulma - <a href="https://mangelmaxime.github.io/Fulma/"><a href="https://mangelmaxime.github.io/Fulma/">https://mangelmaxime.github.io/Fulma/</a></a></li>
+<li>Fable - <a href="https://fable.io/"><a href="https://fable.io/">https://fable.io/</a></a></li>
 </ul>
+</section>
+<section >
+<ul>
+<li>Fuzzy Cloud - <a href="https://fuzzycloud.in/"><a href="https://fuzzycloud.in/">https://fuzzycloud.in/</a></a></li>
+<li>Fable Compiler @ Twitter - <a href="https://twitter.com/FableCompiler">@FableCompiler</a></li>
+<li>Me @ Twitter - <a href="https://twitter.com/kunjee">@kunjee</a></li>
+</ul>
+</section>
+<section >
+<p>Slides - <a href="https://kunjee17.github.io/fnconf18-scaling-elmish-app/#/"><a href="https://kunjee17.github.io/fnconf18-scaling-elmish-app/#/">https://kunjee17.github.io/fnconf18-scaling-elmish-app/#/</a></a></p>
 <aside class="notes">
-Questions if time permits. Fuzzy Cloud link. Available for consulting. Cards available etc etc. Tweet to Fable Compiler or Tweet to me in case of feedback.<br/>
+Here is awesome fable link where I maintaining all awesome stuff happening in Fable<br/>
+Safe - stack is just like mean stack but everything in F#. Even if you are not interested in F# then also do check it out.<br/>
+It is recently featured for Thought works Tech radar.<br/>
+And I personally feel that every Functional Programming language should have similar kind of stack<br/>
+What the F# podcast for Elmish. Where me and Alfonso Garcia Caro was guest<br/>
+Fuzzy Cloud is consulting things I started for almost a year. I am available for training and consulting for everything related to Functional Programming.<br/>
+I also have my visiting card with me if any one like to have.<br/>
+If you have enjoyed this talk please tag Fable Compiler and me if you wish with your good comments.<br/>
+For any kind of inputs or criticism please contact me and will try to improve in next talk.<br/>
+Any questions ? Else I am available here only for today at least. Do contact me.<br/>
+</section>
 </section>
 
 
