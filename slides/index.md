@@ -372,22 +372,20 @@
 - Fulma - [https://mangelmaxime.github.io/Fulma/](https://mangelmaxime.github.io/Fulma/)
 - Fable - [https://fable.io/](https://fable.io/)
 
+' Here is awesome fable link where I maintaining all awesome stuff happening in Fable
+' Safe - stack is just like mean stack but everything in F#. Even if you are not interested in F# then also do check it out.
+' It is recently featured for Thought works Tech radar.
+' And I personally feel that every Functional Programming language should have similar kind of stack
+' What the F# podcast for Elmish. Where me and Alfonso Garcia Caro was guest
+' There is also a link for fulma
+' And fable link. Do try out Fable Repl, it is compiling whole F# code in browser it self. So, your code totally work in offline mode
+
 ---
 
 - Fuzzy Cloud - [https://fuzzycloud.in/](https://fuzzycloud.in/)
 - Fable Compiler @ Twitter - [@FableCompiler](https://twitter.com/FableCompiler)
 - Me @ Twitter - [@kunjee](https://twitter.com/kunjee)
 
----
-
-Slides - [https://kunjee17.github.io/fnconf18-scaling-elmish-app/#/](https://kunjee17.github.io/fnconf18-scaling-elmish-app/#/)
-
-
-' Here is awesome fable link where I maintaining all awesome stuff happening in Fable
-' Safe - stack is just like mean stack but everything in F#. Even if you are not interested in F# then also do check it out.
-' It is recently featured for Thought works Tech radar.
-' And I personally feel that every Functional Programming language should have similar kind of stack
-' What the F# podcast for Elmish. Where me and Alfonso Garcia Caro was guest
 ' Fuzzy Cloud is consulting things I started for almost a year. I am available for training and consulting for everything related to Functional Programming.
 ' I also have my visiting card with me if any one like to have.
 ' If you have enjoyed this talk please tag Fable Compiler and me if you wish with your good comments.
