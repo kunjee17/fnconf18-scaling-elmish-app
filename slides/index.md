@@ -1,36 +1,32 @@
 - title : Scaling Elmish App
 - description : How to Scale Elmish App
 - author : Kunjan Dalal
-- theme : white
+- theme : serif
 - transition : none
 
 ***
-- data-background-image: images/22.png
 
-<div style="background:white;">
-<br/>
+
 ## Scaling Fable Elmish / Elm Application
-### A Experience Report
+### A Experience Report By
 
 <br />
 ### Kunjan Dalal
 ### @kunjee
 <br />
-</div>
+
 
 ' Skip the Intro because of less time
 
 ***
-- data-background-image: images/94.png
 
-<div style="background:white;">
-<br/>
 
-### Slide Agenda
+
+### Agenda for Today
 
 - <s>Intro to me</s>
-- Intro to Fable & Fable.Elmish
 - <s>Intro to Elm</s>
+- Intro to Fable & Fable.Elmish
 - <s>Basic Example</s>
 - <s>The Elm Architecture - TEA </s>
 <!-- - Past - All the W question answered  -->
@@ -38,16 +34,43 @@
 <!-- - The Model -->
 <!-- - The View -->
 <!-- - The Update -->
-- Go Beyond Todo list
+- Tips and Tricks for Scaling your Application
 - Why Elmish instead of Elm
 - <s>External JS library in Fable Elmish </s>
 - <s>External React library in Fable Elmish </s>
-- SAFE stack
+- <s>SAFE stack</s>
 - Thank You Note
 
-</div>
+
 
 ' This talk was around 45 mins but cut down due to other wonderful talk. So, I have to do tight editing on slides. We have lot to cover so let's get started. I am cutting down few basic stuff as you might already learn that in wonderful talks happens before this one
+
+
+***
+
+
+### Pop Quiz Time
+
+![](images/riddler.gif)
+
+' How many of you know about Elm?
+' How many are using Elm in production application? As a whole app or part of it?
+' This is important question -> How many of you feels that they attend a conference and that nice demo application never get converted to full blown application?
+
+***
+
+<s>
+### Demo
+</s>
+
+' We will not see any demo today
+' Instead will talk about past, more about what is possible in contrast to what can be possible
+
+---
+
+### Why Code Samples are in F#?
+
+> It is a mainstream - general purpose functional programming language for your daily web and mobile need. It is strongly typed and it works everywhere. It is #fsharp
 
 ***
 
@@ -59,10 +82,11 @@
 
  > Elmish implements core abstractions that can be used to build Fable applications following the “model view update” style of architecture, as made famous by Elm.
 
-' There are two different things in Fable Elmish. Fable and Fable-Elmish or Elmish it self. Let's have a loot at both.
+' There are two different things in Fable Elmish. Fable and Fable-Elmish or Elmish it self. Let's have a look at both.
 
----
+***
 
+### Fable
 ![](images/fable_logo.png)
 
 ---
@@ -91,6 +115,7 @@
 ```
 
 ' Simple F# code with it's specific Unit of Measure feature. A tight guard against how you define units. Specially useful in Finance and Science / Mathematics obviously.
+' It is basically like Scalajs or Cloujure Script converting respective language to JavaScript.
 
 ---
 
@@ -179,7 +204,15 @@
     |> Program.run
 ```
 
-' And Here things wire up. So, as promised nothing different from your Elm application.
+' And here is wire up code. So, not much different then your regular Elm code. Or for that case any code which follows elm architecture.
+
+***
+
+### Back End - Front End - Back End - Front End - Back End
+
+![](images/backfront.gif)
+
+' I love back end and made a career out of it, and I strongly believe that front end is also required good architecture, Nowadays it is more required. So, today will be talking about that front end part.
 
 ***
 
@@ -194,17 +227,24 @@
 - data-background-image: images/triangles.gif
 
 ***
+ - data-background-image: images/oldman.jpeg
 
-### Let's look at a Normal Big Application
+
+' Today I will be providing tips and tricks. And I hope you will take it as it is just like you will take words of wise old man without asking for more reasons. Respecting time noting else.
+
+***
+
+### Model - View - Update
+
+' In MVU architecture I feel that model is most important. As it is message between update and view. And who ever control the message, controls the narrative.
 
 ---
 
-Here will show code from my project - specifically how components are arranged. yet to decide gif or screen shot will be good option
+- data-background-image: images/news.gif
 
-Here there are two options. Either directly go to pointers one can take care about or explain in terms of model, update and view.
+' So, my tips and tricks will start from that only.
 
-
----
+***
 
 ### Let's Talk about model
 
