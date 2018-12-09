@@ -56,6 +56,13 @@
 <div class="tip" id="fs8">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.printfn</div>
 <div class="tip" id="fs9">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
 <div class="tip" id="fs10">Multiple items<br />type ClassAttribute =<br />&#160;&#160;inherit Attribute<br />&#160;&#160;new : unit -&gt; ClassAttribute<br /><br />Full name: Microsoft.FSharp.Core.ClassAttribute<br /><br />--------------------<br />new : unit -&gt; ClassAttribute</div>
+<div class="tip" id="fs11">type &#39;T option = Option&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Core.option&lt;_&gt;</div>
+<div class="tip" id="fs12">type bool = System.Boolean<br /><br />Full name: Microsoft.FSharp.Core.bool</div>
+<div class="tip" id="fs13">Multiple items<br />module Event<br /><br />from Microsoft.FSharp.Control<br /><br />--------------------<br />type Event&lt;&#39;T&gt; =<br />&#160;&#160;new : unit -&gt; Event&lt;&#39;T&gt;<br />&#160;&#160;member Trigger : arg:&#39;T -&gt; unit<br />&#160;&#160;member Publish : IEvent&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Control.Event&lt;_&gt;<br /><br />--------------------<br />type Event&lt;&#39;Delegate,&#39;Args (requires delegate and &#39;Delegate :&gt; Delegate)&gt; =<br />&#160;&#160;new : unit -&gt; Event&lt;&#39;Delegate,&#39;Args&gt;<br />&#160;&#160;member Trigger : sender:obj * args:&#39;Args -&gt; unit<br />&#160;&#160;member Publish : IEvent&lt;&#39;Delegate,&#39;Args&gt;<br /><br />Full name: Microsoft.FSharp.Control.Event&lt;_,_&gt;<br /><br />--------------------<br />new : unit -&gt; Event&lt;&#39;T&gt;<br /><br />--------------------<br />new : unit -&gt; Event&lt;&#39;Delegate,&#39;Args&gt;</div>
+<div class="tip" id="fs14">val ignore : value:&#39;T -&gt; unit<br /><br />Full name: Microsoft.FSharp.Core.Operators.ignore</div>
+<div class="tip" id="fs15">Multiple items<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =<br />&#160;&#160;| ( [] )<br />&#160;&#160;| ( :: ) of Head: &#39;T * Tail: &#39;T list<br />&#160;&#160;interface IReadOnlyCollection&lt;&#39;T&gt;<br />&#160;&#160;interface IEnumerable<br />&#160;&#160;interface IEnumerable&lt;&#39;T&gt;<br />&#160;&#160;member GetSlice : startIndex:int option * endIndex:int option -&gt; &#39;T list<br />&#160;&#160;member Head : &#39;T<br />&#160;&#160;member IsEmpty : bool<br />&#160;&#160;member Item : index:int -&gt; &#39;T with get<br />&#160;&#160;member Length : int<br />&#160;&#160;member Tail : &#39;T list<br />&#160;&#160;static member Cons : head:&#39;T * tail:&#39;T list -&gt; &#39;T list<br />&#160;&#160;static member Empty : &#39;T list<br /><br />Full name: Microsoft.FSharp.Collections.List&lt;_&gt;</div>
+<div class="tip" id="fs16">namespace Microsoft.FSharp.Control</div>
+<div class="tip" id="fs17">Multiple items<br />type DefaultValueAttribute =<br />&#160;&#160;inherit Attribute<br />&#160;&#160;new : unit -&gt; DefaultValueAttribute<br />&#160;&#160;new : check:bool -&gt; DefaultValueAttribute<br />&#160;&#160;member Check : bool<br /><br />Full name: Microsoft.FSharp.Core.DefaultValueAttribute<br /><br />--------------------<br />new : unit -&gt; DefaultValueAttribute<br />new : check:bool -&gt; DefaultValueAttribute</div>
 
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
@@ -358,9 +365,77 @@ So, my tips and tricks will start from that only.<br/>
 </section>
 <section >
 <h3>Application &amp; Authentication</h3>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Auth and App</span>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">Msg</span> <span class="o">=</span>
+    | <span class="i">ApplicationMsg</span> <span class="k">of</span> <span class="i">Application</span><span class="o">.</span><span class="i">Types</span><span class="o">.</span><span class="i">Msg</span>
+    | <span class="i">AuthenticationMsg</span> <span class="k">of</span> <span class="i">Authentication</span><span class="o">.</span><span class="i">Types</span><span class="o">.</span><span class="i">Msg</span>
+
+<span class="k">type</span> <span class="i">PageModel</span> <span class="o">=</span>
+    | <span class="i">ApplicationModel</span> <span class="k">of</span> <span class="i">Application</span><span class="o">.</span><span class="i">Types</span><span class="o">.</span><span class="i">Model</span>
+    | <span class="i">AuthenticationModel</span> <span class="k">of</span> <span class="i">Authentication</span><span class="o">.</span><span class="i">Types</span><span class="o">.</span><span class="i">Model</span>
+
+<span class="k">type</span> <span class="i">Model</span> <span class="o">=</span> {
+    <span class="i">UserToken</span> <span class="o">:</span> <span class="i">AuthToken</span> <span onmouseout="hideTip(event, 'fs11', 14)" onmouseover="showTip(event, 'fs11', 14)" class="i">option</span>
+    <span class="i">CurrentPage</span> <span class="o">:</span> <span class="i">Page</span>
+    <span class="i">PageModel</span> <span class="o">:</span> <span class="i">PageModel</span>
+}
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">match</span> <span class="i">page</span> <span class="k">with</span>
+| <span class="i">AuthenticationPage</span> <span class="i">a</span> <span class="k">-&gt;</span>
+    <span class="k">let</span> (<span class="i">authentication</span>, <span class="i">authenticationCmd</span>) <span class="o">=</span>
+        <span class="i">Authentication</span><span class="o">.</span><span class="i">State</span><span class="o">.</span><span class="i">init</span>(<span class="i">a</span>)
+    <span class="k">in</span>
+    {<span class="i">model</span> <span class="k">with</span> <span class="i">CurrentPage</span> <span class="o">=</span> <span class="i">AuthenticationPage</span> <span class="i">a</span>;
+        <span class="i">PageModel</span> <span class="o">=</span> <span class="i">AuthenticationModel</span> <span class="i">authentication</span>},
+            <span class="i">Cmd</span><span class="o">.</span><span class="i">map</span> <span class="i">AuthenticationMsg</span> <span class="i">authenticationCmd</span>
+
+| <span class="i">ApplicationPage</span> <span class="i">a</span> <span class="k">-&gt;</span>
+    <span class="k">if</span> <span class="i">model</span><span class="o">.</span><span class="i">UserToken</span><span class="o">.</span><span class="i">IsNone</span>
+    <span class="k">then</span> <span class="i">model</span>, <span class="i">Navigation</span><span class="o">.</span><span class="i">modifyUrl</span>(<span class="i">toHash</span> (<span class="i">AuthenticationPage</span> <span class="i">Login</span>))
+    <span class="k">else</span>
+    <span class="k">let</span> (<span class="i">application</span>, <span class="i">applicationCmd</span>) <span class="o">=</span>
+        <span class="i">Application</span><span class="o">.</span><span class="i">State</span><span class="o">.</span><span class="i">init</span>(<span class="i">a</span>,<span class="i">model</span><span class="o">.</span><span class="i">UserToken</span><span class="o">.</span><span class="i">Value</span>)
+    <span class="k">in</span>
+    {<span class="i">model</span> <span class="k">with</span> <span class="i">CurrentPage</span> <span class="o">=</span> <span class="i">ApplicationPage</span> <span class="i">a</span>;
+        <span class="i">PageModel</span> <span class="o">=</span> <span class="i">ApplicationModel</span> <span class="i">application</span>},
+            <span class="i">Cmd</span><span class="o">.</span><span class="i">map</span> <span class="i">ApplicationMsg</span> <span class="i">applicationCmd</span>
 </code></pre></td>
 </tr>
 </table>
@@ -372,8 +447,32 @@ Pro tip - Use JWT if you are still not using it. It is nice to have when you are
 </section>
 <section >
 <h3>Page Model</h3>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="i">Types</span> <span class="o">=</span>
+
+<span class="k">type</span> <span class="i">BadPageModel</span> <span class="o">=</span> {
+    <span class="i">HomeModel</span> <span class="o">:</span> <span class="i">Home</span><span class="o">.</span><span class="i">Types</span><span class="o">.</span><span class="i">Model</span>
+    <span class="i">UsersModel</span> <span class="o">:</span> <span class="i">Users</span><span class="o">.</span><span class="i">Types</span><span class="o">.</span><span class="i">Model</span>
+    <span class="i">ProfileModel</span> <span class="o">:</span> <span class="i">Profile</span><span class="o">.</span><span class="i">Types</span><span class="o">.</span><span class="i">Model</span>
+}
+
+<span class="k">type</span> <span class="i">GoodPageModel</span> <span class="o">=</span>
+    | <span class="i">HomeModel</span> <span class="k">of</span> <span class="i">Home</span><span class="o">.</span><span class="i">Types</span><span class="o">.</span><span class="i">Model</span>
+    | <span class="i">UsersModel</span> <span class="k">of</span> <span class="i">Users</span><span class="o">.</span><span class="i">Types</span><span class="o">.</span><span class="i">Model</span>
+    | <span class="i">ProfileModel</span> <span class="k">of</span> <span class="i">Profile</span><span class="o">.</span><span class="i">Types</span><span class="o">.</span><span class="i">Model</span>
+</code></pre></td>
 </tr>
 </table>
 <aside class="notes">
@@ -384,20 +483,33 @@ navigation if he is not admin<br/>
 </section>
 <section >
 <h3>Page - Model</h3>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">HomeModel</span> <span class="o">=</span> {
+    <span class="i">Component1</span> <span class="o">:</span> <span class="i">Component</span><span class="o">.</span><span class="i">Types</span><span class="o">.</span><span class="i">Model</span>
+    <span class="i">Component2</span> <span class="o">:</span> <span class="i">Component</span><span class="o">.</span><span class="i">Types</span><span class="o">.</span><span class="i">Model</span>
+    <span class="o">..</span><span class="o">..</span>
+}
+</code></pre></td>
 </tr>
 </table>
 <aside class="notes">
 Divide your page in multiple component. Even if your page is having single big form, divide that in logical group. It always help to manage small chunks of code compare to big chunk.<br/>
-And even as simple as simple entry forms are doing many things, like validation clint side and validation on server side in some case.<br/>
+And even as simple as simple entry forms are doing many things, like validation clint side and validation<br/>
+on server side in case of something like username is available and also valid username.<br/>
 Features like auto complete requires both server and client side code.<br/>
 </aside>
 </section>
+</section>
+<section >
 <section >
 <h3>Component Model</h3>
 <aside class="notes">
-Before we talk about Component model let's take a little break<br/>
+We reached almost half way, so it is time for little break<br/>
 </aside>
 </section>
 <section >
@@ -408,15 +520,117 @@ Before we talk about Component model let's take a little break<br/>
 </section>
 <section >
 <h3>Domain Model on Client Side</h3>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">Validate</span> <span class="o">=</span> {
+    <span class="i">IsValid</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs12', 15)" onmouseover="showTip(event, 'fs12', 15)" class="i">bool</span>
+    <span class="i">Message</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs9', 16)" onmouseover="showTip(event, 'fs9', 16)" class="i">string</span>
+}
+
+<span class="k">type</span> <span class="i">Person</span> <span class="o">=</span> {
+    <span class="i">FirstName</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs9', 17)" onmouseover="showTip(event, 'fs9', 17)" class="i">string</span>
+    <span class="i">LastName</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs9', 18)" onmouseover="showTip(event, 'fs9', 18)" class="i">string</span>
+}
+
+<span class="k">type</span> <span class="i">PersonError</span> <span class="o">=</span> {
+    <span class="i">FirstName</span> <span class="o">:</span> <span class="i">Validate</span>
+    <span class="i">LastName</span> <span class="o">:</span> <span class="i">Validate</span>
+}
+
+<span class="k">type</span> <span class="i">Model</span> <span class="o">=</span> {
+    <span class="i">Person</span> <span class="o">:</span> <span class="i">Person</span>
+    <span class="i">PersonError</span> <span class="o">:</span> <span class="i">PersonError</span>
+}
+</code></pre></td>
+</tr>
+</table>
+<aside class="notes">
+Most dumb domain model example to give an idea. Here, to update error message that first name should not be empty<br/>
+you need to update, model, PersonError, Validate and Message. It is three level deep.<br/>
+You can always use lenses for this, but if you need to use lenses than you are doing something wrong.<br/>
+As model represent client keep it as flat as possible. Use of lenses will become more and more complicated as application grows<br/>
+Instead divide model in multiple models in MVU fashion<br/>
+</aside>
+</section>
+<section >
+<h3>Flatten the model</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">Validate</span> <span class="o">=</span> {
+    <span class="i">IsValid</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs12', 19)" onmouseover="showTip(event, 'fs12', 19)" class="i">bool</span>
+    <span class="i">Message</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs9', 20)" onmouseover="showTip(event, 'fs9', 20)" class="i">string</span>
+}
+
+<span class="k">type</span> <span class="i">FirstName</span> <span class="o">=</span> {
+    <span class="i">Value</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs9', 21)" onmouseover="showTip(event, 'fs9', 21)" class="i">string</span>
+    <span class="i">Valid</span> <span class="o">:</span> <span class="i">Validate</span>
+}
+
+<span class="k">type</span> <span class="i">LastName</span> <span class="o">=</span> {
+    <span class="i">Value</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs9', 22)" onmouseover="showTip(event, 'fs9', 22)" class="i">string</span>
+    <span class="i">Valid</span> <span class="o">:</span> <span class="i">Validate</span>
+}
+
+<span class="k">type</span> <span class="i">Person</span> <span class="o">=</span> {
+    <span class="i">FirstName</span> <span class="o">:</span> <span class="i">FirstName</span>
+    <span class="i">LastName</span> <span class="o">:</span> <span class="i">LastName</span>
+}
+</code></pre></td>
 </tr>
 </table>
 </section>
 <section >
-<h3>Flatten the model</h3>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+<h5>OR</h5>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">Person</span> <span class="o">=</span> {
+    <span class="i">FirstName</span><span class="o">:</span> <span onmouseout="hideTip(event, 'fs9', 23)" onmouseover="showTip(event, 'fs9', 23)" class="i">string</span>
+    <span class="i">FirstNameErr</span> <span class="o">:</span> <span class="i">Validate</span>
+    <span class="i">LastName</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs9', 24)" onmouseover="showTip(event, 'fs9', 24)" class="i">string</span>
+    <span class="i">LastNameErr</span> <span class="o">:</span> <span class="i">Validate</span>
+}
+</code></pre></td>
 </tr>
 </table>
 </section>
@@ -427,17 +641,190 @@ Before we talk about Component model let's take a little break<br/>
 </section>
 <section >
 <h3>Single Responsibly Principal</h3>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">Msg</span> <span class="o">=</span>
+    | <span class="i">ChangeValue</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs9', 25)" onmouseover="showTip(event, 'fs9', 25)" class="i">string</span>
+    | <span class="i">Changed</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs9', 26)" onmouseover="showTip(event, 'fs9', 26)" class="i">string</span>
+
+<span class="k">let</span> <span class="i">init</span> () <span class="o">=</span> { <span class="i">Value</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> }, <span class="i">Cmd</span><span class="o">.</span><span class="i">none</span>
+
+<span class="k">let</span> <span class="i">update</span> (<span class="i">msg</span><span class="o">:</span><span class="i">Msg</span>) (<span class="i">model</span><span class="o">:</span><span class="i">Model</span>) <span class="o">=</span>
+    <span class="k">match</span> <span class="i">msg</span> <span class="k">with</span>
+    | <span class="i">ChangeValue</span> <span class="i">newValue</span> <span class="k">-&gt;</span>
+        <span class="k">let</span> <span class="i">updateValue</span> <span class="o">=</span> <span class="i">newValue</span><span class="o">.</span><span class="i">ToUpper</span>()
+        <span class="i">model</span>, <span class="i">Cmd</span><span class="o">.</span><span class="i">ofMsg</span> (<span class="i">Changed</span> <span class="i">updateValue</span>)
+    | <span class="i">Changed</span> <span class="i">updatedValue</span> <span class="k">-&gt;</span>
+        { <span class="i">Value</span> <span class="o">=</span> <span class="i">updatedValue</span>}, <span class="i">Cmd</span><span class="o">.</span><span class="i">none</span>
+</code></pre></td>
+</tr>
+</table>
+<aside class="notes">
+One command is doing one and only one thing. Here I capitalizing everything coming in. Just because why not? But you can do validation or and post to data to server<br/>
+When things are good to go pass it to Changed message. It is confirmation that everything is good to go.<br/>
+</aside>
+</section>
+<section >
+<h3>Another way to Look at it</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">Command</span> <span class="o">=</span> | <span class="i">ChangeValue</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs9', 27)" onmouseover="showTip(event, 'fs9', 27)" class="i">string</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs13', 28)" onmouseover="showTip(event, 'fs13', 28)" class="i">Event</span> <span class="o">=</span> | <span class="i">Changed</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs9', 29)" onmouseover="showTip(event, 'fs9', 29)" class="i">string</span>
+
+<span class="k">type</span> <span class="i">Msg</span> <span class="o">=</span>
+    | <span class="i">Command</span> <span class="k">of</span> <span class="i">Command</span>
+    | <span onmouseout="hideTip(event, 'fs13', 30)" onmouseover="showTip(event, 'fs13', 30)" class="i">Event</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs13', 31)" onmouseover="showTip(event, 'fs13', 31)" class="i">Event</span>
+
+<span class="k">let</span> <span class="i">init</span> () <span class="o">=</span> { <span class="i">Value</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> }, <span class="i">Cmd</span><span class="o">.</span><span class="i">none</span>
+
+<span class="k">let</span> <span class="i">processCommand</span> (<span class="i">msg</span> <span class="o">:</span> <span class="i">Command</span>) (<span class="i">model</span> <span class="o">:</span> <span class="i">Model</span>) <span class="o">=</span>
+    <span class="k">match</span> <span class="i">msg</span> <span class="k">with</span>
+    | <span class="i">ChangeValue</span> <span class="i">newValue</span> <span class="k">-&gt;</span>
+        <span class="k">let</span> <span class="i">updateValue</span> <span class="o">=</span> <span class="i">newValue</span><span class="o">.</span><span class="i">ToUpper</span>()
+        <span class="i">model</span>, <span class="i">Cmd</span><span class="o">.</span><span class="i">ofMsg</span> (<span onmouseout="hideTip(event, 'fs13', 32)" onmouseover="showTip(event, 'fs13', 32)" class="i">Event</span> (<span class="i">Changed</span> <span class="i">updateValue</span>))
+
+<span class="k">let</span> <span class="i">processEvent</span> (<span class="i">msg</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs13', 33)" onmouseover="showTip(event, 'fs13', 33)" class="i">Event</span>) (<span class="i">model</span><span class="o">:</span> <span class="i">Model</span>) <span class="o">=</span>
+    <span class="k">match</span> <span class="i">msg</span> <span class="k">with</span>
+    | <span class="i">Changed</span> <span class="i">value</span> <span class="k">-&gt;</span>
+        { <span class="i">Value</span> <span class="o">=</span> <span class="i">value</span>}, <span class="i">Cmd</span><span class="o">.</span><span class="i">none</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">update</span> (<span class="i">msg</span><span class="o">:</span><span class="i">Msg</span>) (<span class="i">model</span><span class="o">:</span><span class="i">Model</span>) <span class="o">=</span>
+    <span class="k">match</span> <span class="i">msg</span> <span class="k">with</span>
+    | <span class="i">Command</span> <span class="i">c</span> <span class="k">-&gt;</span> <span class="i">processCommand</span> <span class="i">c</span> <span class="i">model</span>
+    | <span onmouseout="hideTip(event, 'fs13', 34)" onmouseover="showTip(event, 'fs13', 34)" class="i">Event</span> <span class="i">e</span> <span class="k">-&gt;</span> <span class="i">processEvent</span> <span class="i">e</span> <span class="i">model</span>
+</code></pre></td>
 </tr>
 </table>
 </section>
 <section >
 <h3>Subscribe is there to Use</h3>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Types</span>
+<span class="k">type</span> <span class="i">Model</span> <span class="o">=</span> <span class="i">CurrentTime</span> <span class="k">of</span> <span class="i">DateTime</span>
+<span class="k">type</span> <span class="i">Messages</span> <span class="o">=</span> <span class="i">Tick</span> <span class="k">of</span> <span class="i">DateTime</span>
+
+<span class="c">// State</span>
+<span class="k">let</span> <span class="i">initialState</span>() <span class="o">=</span>
+    <span class="i">CurrentTime</span> <span class="i">DateTime</span><span class="o">.</span><span class="i">Now</span>, <span class="i">Cmd</span><span class="o">.</span><span class="i">none</span>
+
+<span class="k">let</span> <span class="i">update</span> (<span class="i">Tick</span> <span class="i">next</span>) (<span class="i">CurrentTime</span> <span class="i">_time</span>) <span class="o">=</span>
+    <span class="i">CurrentTime</span> <span class="i">next</span>, <span class="i">Cmd</span><span class="o">.</span><span class="i">none</span>
+
+<span class="k">let</span> <span class="i">timer</span> <span class="i">initial</span> <span class="o">=</span>
+    <span class="k">let</span> <span class="i">sub</span> <span class="i">dispatch</span> <span class="o">=</span>
+        <span class="i">Browser</span><span class="o">.</span><span class="i">window</span><span class="o">.</span><span class="i">setInterval</span>(<span class="k">fun</span> _ <span class="k">-&gt;</span>
+            <span class="i">dispatch</span> (<span class="i">Tick</span> <span class="i">DateTime</span><span class="o">.</span><span class="i">Now</span>)
+        , <span class="n">1000</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs14', 35)" onmouseover="showTip(event, 'fs14', 35)" class="i">ignore</span>
+    <span class="i">Cmd</span><span class="o">.</span><span class="i">ofSub</span> <span class="i">sub</span>
+</code></pre></td>
 </tr>
 </table>
+<aside class="notes">
+This is famous subscribe example. But it is way more powerful than this. Let's have an another example where it can be used.<br/>
+</aside>
+</section>
+<section >
+<h3>Real Time or Reactive Application</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">subscribe</span> <span class="o">=</span>
+        <span class="k">let</span> <span class="i">socketSubscription</span> <span class="i">dispatch</span> <span class="o">=</span>
+            <span class="k">let</span> <span class="i">eventSourceOptions</span> <span class="o">=</span> <span class="i">createEmpty</span><span class="o">&lt;</span><span class="i">IEventSourceOptions</span><span class="o">&gt;</span>
+            <span class="i">eventSourceOptions</span><span class="o">.</span><span class="i">handlers</span> <span class="o">&lt;-</span> <span class="i">createObj</span> [
+                <span class="s">&quot;onMessage&quot;</span> <span class="o">==&gt;</span>
+                    <span class="k">fun</span> (<span class="i">msg</span><span class="o">:</span> <span class="i">ServerEventMessage</span>) <span class="k">-&gt;</span>
+                        <span onmouseout="hideTip(event, 'fs8', 36)" onmouseover="showTip(event, 'fs8', 36)" class="i">printfn</span> <span class="s">&quot;onMessage %A&quot;</span> <span class="i">msg</span><span class="o">.</span><span class="i">json</span>
+                <span class="s">&quot;chat&quot;</span> <span class="o">==&gt;</span>
+                    <span class="k">fun</span> (<span class="i">msg</span> <span class="o">:</span> <span class="i">OutputMessages</span>) <span class="k">-&gt;</span>
+                                <span class="i">msg</span> <span class="o">|&gt;</span> (<span class="i">SSESuccessMessages</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="i">dispatch</span>)
+            ]
+
+            <span class="k">let</span> <span class="i">channels</span> <span class="o">=</span> [|<span class="s">&quot;home&quot;</span>; <span class="s">&quot;&quot;</span>|]
+            <span class="i">SSClient</span><span class="o">.</span><span class="i">ServerEventsClient</span><span class="o">.</span><span class="i">Create</span>(<span class="i">baseUrl</span>
+            , <span class="k">new</span> <span onmouseout="hideTip(event, 'fs15', 37)" onmouseover="showTip(event, 'fs15', 37)" class="i">List</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs9', 38)" onmouseover="showTip(event, 'fs9', 38)" class="i">string</span><span class="o">&gt;</span>(<span class="i">channels</span>)
+            , <span class="i">eventSourceOptions</span>
+            )<span class="o">.</span><span class="i">start</span>() <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs14', 39)" onmouseover="showTip(event, 'fs14', 39)" class="i">ignore</span>
+        <span class="i">Cmd</span><span class="o">.</span><span class="i">ofSub</span> <span class="i">socketSubscription</span>
+</code></pre></td>
+</tr>
+</table>
+<aside class="notes">
+Say it real time if you are little old school person or reactive application if you like to use buzzword. Subscribe is pretty useful in those scenarios.<br/>
+And now also you will get why divide MSG in Command and Event. You can subscribe to Events from Subscribe to update the UI in reactive fashion.<br/>
+</aside>
 </section>
 </section>
 <section >
@@ -445,11 +832,56 @@ Before we talk about Component model let's take a little break<br/>
 <h3>Let's Talk about View</h3>
 </section>
 <section data-background-image="images/catgroup.jpg">
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">root</span> <span class="i">model</span> <span class="i">dispatch</span> <span class="o">=</span>
+    <span class="i">Container</span><span class="o">.</span><span class="i">container</span>[ <span class="i">Container</span><span class="o">.</span><span class="i">IsFluid</span> ][
+        <span class="i">documentTable</span> <span class="i">model</span> <span class="i">dispatch</span>
+    ]
+</code></pre></td>
+</tr>
+</table>
+<aside class="notes">
+View should be Small & <s>Dumb</s> cute. It should be representation of whole page of application. So, if someone is reading that get the whole idea of page.<br/>
+</aside>
 </section>
 <section >
 <h3>Use CSS Wrappers like Fulma</h3>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">form</span> [ ]
+        [ <span class="c">// Email field</span>
+            <span class="i">Field</span><span class="o">.</span><span class="i">div</span> [ ]
+                [ <span class="i">Label</span><span class="o">.</span><span class="i">label</span> [ ]
+                    [ <span class="i">str</span> <span class="s">&quot;Email&quot;</span> ]
+                  <span onmouseout="hideTip(event, 'fs16', 40)" onmouseover="showTip(event, 'fs16', 40)" class="i">Control</span><span class="o">.</span><span class="i">div</span> [ <span onmouseout="hideTip(event, 'fs16', 41)" onmouseover="showTip(event, 'fs16', 41)" class="i">Control</span><span class="o">.</span><span class="i">HasIconLeft</span>
+                                <span onmouseout="hideTip(event, 'fs16', 42)" onmouseover="showTip(event, 'fs16', 42)" class="i">Control</span><span class="o">.</span><span class="i">HasIconRight</span> ]
+                    [ <span class="i">Input</span><span class="o">.</span><span class="i">email</span> [ <span class="i">Input</span><span class="o">.</span><span class="i">Color</span> <span class="i">IsDanger</span>
+                                    <span class="i">Input</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs17', 43)" onmouseover="showTip(event, 'fs17', 43)" class="i">DefaultValue</span> <span class="s">&quot;hello@&quot;</span> ]
+                      <span class="i">Icon</span><span class="o">.</span><span class="i">faIcon</span> [ <span class="i">Icon</span><span class="o">.</span><span class="i">Size</span> <span class="i">IsSmall</span>; <span class="i">Icon</span><span class="o">.</span><span class="i">IsLeft</span> ]
+                        [ <span class="i">Fa</span><span class="o">.</span><span class="i">icon</span> <span class="i">Fa</span><span class="o">.</span><span class="i">I</span><span class="o">.</span><span class="i">Envelope</span> ]
+                      <span class="i">Icon</span><span class="o">.</span><span class="i">faIcon</span> [ <span class="i">Icon</span><span class="o">.</span><span class="i">Size</span> <span class="i">IsSmall</span>; <span class="i">Icon</span><span class="o">.</span><span class="i">IsRight</span> ]
+                        [ <span class="i">Fa</span><span class="o">.</span><span class="i">icon</span> <span class="i">Fa</span><span class="o">.</span><span class="i">I</span><span class="o">.</span><span class="i">Warning</span> ] ]
+                  <span class="i">Help</span><span class="o">.</span><span class="i">help</span> [ <span class="i">Help</span><span class="o">.</span><span class="i">Color</span> <span class="i">IsDanger</span> ]
+                    [ <span class="i">str</span> <span class="s">&quot;This email is invalid&quot;</span> ] ] ]
+</code></pre></td>
 </tr>
 </table>
 </section>
@@ -457,24 +889,70 @@ Before we talk about Component model let's take a little break<br/>
 <section >
 <section >
 <h3>Why I chose Elmish?</h3>
+<ul>
+<li>One Language of for Server, Client (Web &amp; Mobile), Data Science / ML &amp; Data Processing etc.</li>
+<li>Possible to leverage JavaScript libraries (Stateless)</li>
+<li>Possible to leverage React libraries (Stateless)</li>
+<li>Because of all these I can leverage my experience</li>
+</ul>
 <aside class="notes">
-If everything is possible in Elm then why I choose Elmish? Let me explain how I see Elm and Elmish and then I ll explain why I choose one over another.<br/>
+If everything is possible in Elm then why I choose Elmish?<br/>
+Here are couple of reason.<br/>
 </aside>
 </section>
 <section >
 <h3>Recharts</h3>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"></pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"></code></pre></td>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">lineChartSample</span> <span class="o">=</span>
+    <span class="i">lineChart</span>
+        [ <span class="i">margin</span> <span class="n">5.</span> <span class="n">20.</span> <span class="n">5.</span> <span class="n">0.</span>
+          <span class="i">Chart</span><span class="o">.</span><span class="i">Width</span> <span class="n">600.</span>
+          <span class="i">Chart</span><span class="o">.</span><span class="i">Height</span> <span class="n">300.</span>
+          <span class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs3', 44)" onmouseover="showTip(event, 'fs3', 44)" class="i">Data</span> <span class="i">data</span> ]
+        [ <span class="i">line</span>
+            [ <span class="i">Cartesian</span><span class="o">.</span><span class="i">Type</span> <span class="i">Monotone</span>
+              <span class="i">Cartesian</span><span class="o">.</span><span class="i">DataKey</span> <span class="s">&quot;uv&quot;</span>
+              <span class="i">P</span><span class="o">.</span><span class="i">Stroke</span> <span class="s">&quot;#8884d8&quot;</span>
+              <span class="i">P</span><span class="o">.</span><span class="i">StrokeWidth</span> <span class="n">2.</span> ]
+            []
+          <span class="i">cartesianGrid</span>
+            [ <span class="i">P</span><span class="o">.</span><span class="i">Stroke</span> <span class="s">&quot;#ccc&quot;</span>
+              <span class="i">P</span><span class="o">.</span><span class="i">StrokeDasharray</span> <span class="s">&quot;5 5&quot;</span> ]
+            []
+          <span class="i">xaxis</span> [<span class="i">Cartesian</span><span class="o">.</span><span class="i">DataKey</span> <span class="s">&quot;name&quot;</span>] []
+          <span class="i">yaxis</span> [] []
+          <span class="i">tooltip</span> [] []
+        ]
+</code></pre></td>
 </tr>
 </table>
 <aside class="notes">
-Rechart code to give example that how easy it is to use react libraries.<br/>
+Here is Rechart example in F#. No need to create graph library from bottom up. BTW even ReChart is using D3 to draw charts.<br/>
 </aside>
 </section>
 </section>
 <section >
-<section >
-<h2>Thank You</h2>
+<section data-background-image="images/catthankyou.gif">
 </section>
 <section >
 <ul>
@@ -498,7 +976,7 @@ And fable link. Do try out Fable Repl, it is compiling whole F# code in browser 
 <ul>
 <li>Fuzzy Cloud - <a href="https://fuzzycloud.in/"><a href="https://fuzzycloud.in/">https://fuzzycloud.in/</a></a></li>
 <li>Fable Compiler @ Twitter - <a href="https://twitter.com/FableCompiler">@FableCompiler</a></li>
-<li>Me @ Twitter - <a href="https://twitter.com/kunjee">@kunjee</a></li>
+<li>Me (Kunjan Dalal) @ Twitter - <a href="https://twitter.com/kunjee">@kunjee</a></li>
 </ul>
 <aside class="notes">
 Fuzzy Cloud is consulting things I started for almost a year. I am available for training and consulting for everything related to Functional Programming.<br/>
