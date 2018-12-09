@@ -16,7 +16,7 @@
 <br />
 
 
-' Skip the Intro because of less time
+' Hello Hello. My self Kunjan Dalal, also known as Kunjee. I will be skipping other parts of the intro; because we are having some time issues.
 
 ***
 
@@ -43,7 +43,7 @@
 
 
 
-' This talk was around 45 mins but cut down due to other wonderful talk. So, I have to do tight editing on slides. We have lot to cover so let's get started. I am cutting down few basic stuff as you might already learn that in wonderful talks happens before this one
+' This talk was 45 mins long when I submitted. It has been cut down to 20 minutes due to other nice talks in the same area. So, I will also be cutting down a few things you might already know from other talks at this conference.
 
 
 ***
@@ -54,8 +54,8 @@
 ![](images/riddler.gif)
 
 ' How many of you know about Elm?
-' How many are using Elm in production application? As a whole app or part of it?
-' This is important question -> How many of you feels that they attend a conference and that nice demo application never get converted to full blown application?
+' How many are using Elm in a production application? A whole application or may be part of it?
+' Here is an important question. How many of you feel that the nice demo application is shown in the conference never get converted to the full-blown application?
 
 ***
 
@@ -63,14 +63,16 @@
 ### Demo
 </s>
 
-' We will not see any demo today
-' Instead will talk about past, more about what is possible in contrast to what can be possible
+' We will not see any demo today.
+' Instead will talk about the past, more about what is possible in contrast to what can be possible.
 
 ---
 
 ### Why Code Samples will be  in F#?
 
-> It is a mainstream - general purpose functional programming language for your daily web and mobile need. It is strongly typed and it works everywhere. It is #fsharp
+> It is a general-purpose functional programming language. It is a very much mainstream language. It works for web and mobile. It is very much strongly type language. It is F#.
+
+' In this slides, all code samples will be in F#.
 
 ***
 
@@ -82,7 +84,7 @@
 
  > Elmish implements core abstractions that can be used to build Fable applications following the “model view update” style of architecture, as made famous by Elm.
 
-' There are two different things in Fable Elmish. Fable and Fable-Elmish or Elmish it self. Let's have a look at both.
+' There are two different things in Fable Elmish. Fable and Fable-Elmish or Elmish generally speaking. Let's have a look at both.
 
 ***
 
@@ -114,8 +116,7 @@
 
 ```
 
-' Simple F# code with it's specific Unit of Measure feature. A tight guard against how you define units. Specially useful in Finance and Science / Mathematics obviously.
-' It is basically like Scalajs or Cloujure Script converting respective language to JavaScript.
+' Here is a simple F# code with its specific Unit of Measure feature. A tight guard against how you define units. It is very helpful in the industry like Finance, Biology, Research etc.
 
 ---
 
@@ -134,7 +135,7 @@
             (sampleValue1)(sampleValue2)(sampleValue3);
 ```
 
-' Look at this . A very readable JavaScript. Which then pass on to Bable to boil down to normal JavaScript which can be understood by browser.
+' Have a look at this. A very readable JavaScript. Which then pass on to Bable to boil down to normal JavaScript which can be understood by the browser.
 
 ***
 
@@ -154,7 +155,7 @@
         | ChangeValue of string
 ```
 
-' Your routine model. With 1 property of type String. To change that we need to pass message of value string.
+' Your routine model with a single property of type String. To change that we need to pass the message of value string.
 
 ---
 
@@ -171,7 +172,7 @@
             { Value = newValue }, Cmd.none
 ```
 
-' Init is initializing with empty value and then update will take care of every change.
+' Init is initializing with an empty value and then update will take care of every change happen in the application.
 
 ---
 
@@ -190,7 +191,7 @@
                 str "!" ] ]
 ```
 
-' Here is simple view which takes the value, pass in to update and show the updated value.
+' Here is a simple view that takes the value and shows it to a user. Also, it can dispatch a message to update method.
 
 ---
 
@@ -204,15 +205,15 @@
     |> Program.run
 ```
 
-' And here is wire up code. So, not much different then your regular Elm code. Or for that case any code which follows elm architecture.
+' And here is wire up a code. Not much different than your regular Elm code. It is following the elm architecture.
 
-***
+<!-- ***
 
 ### Back End - Front End - Back End - Front End - Back End
 
 ![](images/backfront.gif)
 
-' I love back end and made a career out of it, and I strongly believe that front end is also required good architecture, Nowadays it is more required. So, today will be talking about that front end part.
+' I love back end and made a career out of it, and I strongly believe that front end is also required good architecture, Nowadays it is more required. So, today will be talking about that front end part. -->
 
 ***
 
@@ -220,7 +221,7 @@
 
 ![](images/Deathly_Hallows_Sign.svg)
 
-' what promise was simple thing. html, js and css. And you know SPA. You know everything about it. But
+' When they told us about Single Page Application, they promise us that you don't need to any other thing other than HTML, javascript, and CSS. They promise a triangle of power, but instead what we got?
 
 ---
 
@@ -230,13 +231,13 @@
  - data-background-image: images/oldman.jpeg
 
 
-' Today I will be providing tips and tricks. And I hope you will take it as it is just like you will take words of wise old man without asking for more reasons. Respecting time noting else.
+'  Today I will be providing tips and tricks for your Elm / Elmish application. I wish you will take the advice as it is. Just like we used to take advise of a wise old man. Respecting time nothing else.
 
 ***
 
 ### Model - View - Update
 
-' In MVU architecture I feel that model is most important. As it is message between update and view. And who ever control the message, controls the narrative.
+' In MVU architecture I feel that the model is the most important thing. It is a message between update and view, and whoever controls the message controls the narrative.
 
 ---
 
@@ -295,9 +296,8 @@ match page with
 ```
 
 
-' User can access on module and one can't. If you are starting your application and you are having user authentication then do separate them. For starting 2 - 3 pages it feels like
-' it is ok to pages together. But as you grow there will be a lot more repeated code to check user before reaching out every page.
-' Pro tip - Use JWT if you are still not using it. It is nice to have when you are developing State less application
+' An Authenticated user can access the application module and all users can access the Authenticate module. If you are starting your application and you are having user authentication in your application then you surely like to do this. If you are having 2 - 3 pages where a user needs to be authenticated then it is ok but not more than that; you seriously like to save your self from repeated user verification code.
+' Pro tip - Use JWT if you are still not using it. It is nice to have when you are developing a Stateless application.
 
 ---
 
@@ -319,9 +319,8 @@ type GoodPageModel =
 
 ```
 
-' There are two ways of writing page. As shown here. But having page model as option type always help. You are only loading data that is required for that specific page.
-' Pro tip - You can group pages by Navigation. So, one less naming problem solve. Also, it helps to have authorization feature abstracted away. So, user is not allowed in admin
-' navigation if he is not admin
+' There are two ways of writing page-model. But having page model as option type always helps. You are only loading data that is required for a page, nothing else.
+' Pro tip - You can group pages by Navigation. So, one less naming problem solve.
 
 ---
 
@@ -335,16 +334,15 @@ type HomeModel = {
 }
 ```
 
-' Divide your page in multiple component. Even if your page is having single big form, divide that in logical group. It always help to manage small chunks of code compare to big chunk.
-' And even as simple as simple entry forms are doing many things, like validation clint side and validation
-' on server side in case of something like username is available and also valid username.
-' Features like auto complete requires both server and client side code.
+' Divide your page into multiple components. Even if your page is having a single big entry form, divide that into a logical group. It always helps to manage small chunks of code compared to a big chunk.
+' Even simple entry forms are doing many things, like validation on a client-side and validation on the server side as if a username is available or not.
+' Features, like autocomplete will, requires a server and client-side code.
 
 ***
 
 ### Component Model
 
-' We reached almost half way, so it is time for little break
+' We almost reached halfway, so it is time for a little break.
 
 ---
 
@@ -381,11 +379,7 @@ type Model = {
 }
 ```
 
-' Most dumb domain model example to give an idea. Here, to update error message that first name should not be empty
-' you need to update, model, PersonError, Validate and Message. It is three level deep.
-' You can always use lenses for this, but if you need to use lenses than you are doing something wrong.
-' As model represent client keep it as flat as possible. Use of lenses will become more and more complicated as application grows
-' Instead divide model in multiple models in MVU fashion
+' Most dumb domain model example to give an idea. Here just to show that first name should not be empty I need to update model, then Person-Error, then Validate and then message. It is three level deep. One can always use lenses to update them, but if you need to use lenses then you are doing something wrong. As model represent the view, we need to keep it as flat as possible. Use of lenses will become more and more complicated as an application grows. Instead, divide model in multiple models in MVU fashions.
 
 ---
 
@@ -450,8 +444,8 @@ let update (msg:Msg) (model:Model) =
         { Value = updatedValue}, Cmd.none
 ```
 
-' One command is doing one and only one thing. Here I capitalizing everything coming in. Just because why not? But you can do validation or and post to data to server
-' When things are good to go pass it to Changed message. It is confirmation that everything is good to go.
+' One command should be doing one and only one thing. Here I capitalizing everything coming into the update function. Just because why not?  But you can do validation or and post to data to a server.
+' As command processes, the data, pass it to Changed message. It is confirmation that everything is good to go.
 
 ---
 
@@ -477,8 +471,6 @@ let processEvent (msg : Event) (model: Model) =
     match msg with
     | Changed value ->
         { Value = value}, Cmd.none
-
-
 ```
 
 ---
@@ -516,7 +508,7 @@ let timer initial =
     Cmd.ofSub sub
 ```
 
-' This is famous subscribe example. But it is way more powerful than this. Let's have an another example where it can be used.
+' This is a famous subscribe example. But it is way more powerful than this. Let's have another example where it can be used.
 
 ---
 
@@ -543,8 +535,7 @@ let subscribe =
         Cmd.ofSub socketSubscription
 ```
 
-' Say it real time if you are little old school person or reactive application if you like to use buzzword. Subscribe is pretty useful in those scenarios.
-' And now also you will get why divide MSG in Command and Event. You can subscribe to Events from Subscribe to update the UI in reactive fashion.
+' Be it Real-time or reactive application; Subscribe is pretty useful. Here you can subscribe to events those are coming from the server. Events will update the UI eventually.
 
 ***
 
@@ -561,7 +552,7 @@ let root model dispatch =
 ```
 
 
-' View should be Small & <s>Dumb</s> cute. It should be representation of whole page of application. So, if someone is reading that get the whole idea of page.
+' A view should be Small & cute. It should be a representation of the whole page. So, if someone is reading root function, s/he will get the idea.
 
 ---
 
@@ -584,18 +575,16 @@ form [ ]
                   Help.help [ Help.Color IsDanger ]
                     [ str "This email is invalid" ] ] ]
 ```
+' It will make so much easier to write UIs with wrappers. Please use them.
 
 ***
 
-### Why I chose Elmish?
+### Why I choose Elmish?
 
 - One Language of for Server, Client (Web & Mobile), Data Science / ML & Data Processing etc.
-- Possible to leverage JavaScript libraries (Stateless)
-- Possible to leverage React libraries (Stateless)
-- Because of all these I can leverage my experience
-
-' If everything is possible in Elm then why I choose Elmish?
-' Here are couple of reason.
+- Possible to leverage JavaScript libraries (Stateless one)
+- Possible to leverage React libraries (Stateless one)
+- Because of all these, I can leverage my experience, I acquired throughout all these years.
 
 ---
 
@@ -637,13 +626,12 @@ let lineChartSample =
 - Fulma - [https://mangelmaxime.github.io/Fulma/](https://mangelmaxime.github.io/Fulma/)
 - Fable - [https://fable.io/](https://fable.io/)
 
-' Here is awesome fable link where I maintaining all awesome stuff happening in Fable
-' Safe - stack is just like mean stack but everything in F#. Even if you are not interested in F# then also do check it out.
-' It is recently featured for Thought works Tech radar.
-' And I personally feel that every Functional Programming language should have similar kind of stack
-' What the F# podcast for Elmish. Where me and Alfonso Garcia Caro was guest
+' Here is an awesome fable link where I am maintaining all awesome stuff happening in Fable world.
+' Safe-Stack is just like MEAN-Stack but everything in F#. Even if you are not interested in F# then also do check it out. It is featured in Thought works Tech Radar recently.
+' And I personally feel that every Functional Programming language should have similar kind of stack.
+' Then there is What the F# podcast, Where I and Alfonso Garcia Caro was talking about Elmish.
 ' There is also a link for fulma
-' And fable link. Do try out Fable Repl, it is compiling whole F# code in browser it self. So, your code totally work in offline mode
+' And the obvious fable link. Do try out Fable REPL, it is compiling whole F# code in the browser itself. So, your code will totally work in offline mode.
 
 ---
 
@@ -652,8 +640,8 @@ let lineChartSample =
 - Me (Kunjan Dalal) @ Twitter - [@kunjee](https://twitter.com/kunjee)
 
 
-' Fuzzy Cloud is consulting things I started for almost a year. I am available for training and consulting for everything related to Functional Programming.
-' I also have my visiting card with me if any one like to have.
-' If you have enjoyed this talk please tag Fable Compiler and me if you wish with your good comments.
-' For any kind of inputs or criticism please contact me and will try to improve in next talk.
-' Any questions ? Else I am available here only for today at least. Do contact me.
+' Fuzzy Cloud is consulting things I started recently. I am available for training and consulting for everything related but not limited to Functional Programming.
+' I am carrying my visiting card with me if anyone likes to have.
+' If you have enjoyed this talk please tag Fable Compiler and me (I am totally optional) with your good comments.
+' Please provide your criticism and inputs to me, I will surely try to improve for next talk.
+' Any questions? Else I am available here only for today at least. Do stay in touch.
