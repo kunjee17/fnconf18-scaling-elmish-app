@@ -254,7 +254,44 @@
 ### Application & Authentication
 
 ```fsharp
-// Auth and App
+type Msg =
+    | ApplicationMsg of Application.Types.Msg
+    | AuthenticationMsg of Authentication.Types.Msg
+
+type PageModel =
+    | ApplicationModel of Application.Types.Model
+    | AuthenticationModel of Authentication.Types.Model
+
+type Model = {
+    UserToken : AuthToken option
+    CurrentPage : Page
+    PageModel : PageModel
+}
+
+```
+---
+
+```fsharp
+match page with
+| AuthenticationPage a ->
+    let (authentication, authenticationCmd) =
+        Authentication.State.init(a)
+    in
+    {model with CurrentPage = AuthenticationPage a;
+        PageModel = AuthenticationModel authentication},
+            Cmd.map AuthenticationMsg authenticationCmd
+
+| ApplicationPage a ->
+    if model.UserToken.IsNone
+    then model, Navigation.modifyUrl(toHash (AuthenticationPage Login))
+    else
+    let (application, applicationCmd) =
+        Application.State.init(a,model.UserToken.Value)
+    in
+    {model with CurrentPage = ApplicationPage a;
+        PageModel = ApplicationModel application},
+            Cmd.map ApplicationMsg applicationCmd
+
 ```
 
 
@@ -267,8 +304,21 @@
 ### Page Model
 
 ```fsharp
+module Types =
+
+type BadPageModel = {
+    HomeModel : Home.Types.Model
+    UsersModel : Users.Types.Model
+    ProfileModel : Profile.Types.Model
+}
+
+type GoodPageModel =
+    | HomeModel of Home.Types.Model
+    | UsersModel of Users.Types.Model
+    | ProfileModel of Profile.Types.Model
 
 ```
+
 ' There are two ways of writing page. As shown here. But having page model as option type always help. You are only loading data that is required for that specific page.
 ' Pro tip - You can group pages by Navigation. So, one less naming problem solve. Also, it helps to have authorization feature abstracted away. So, user is not allowed in admin
 ' navigation if he is not admin
@@ -278,18 +328,23 @@
 ### Page - Model
 
 ```fsharp
-
+type HomeModel = {
+    Component1 : Component.Types.Model
+    Component2 : Component.Types.Model
+    ....
+}
 ```
 
 ' Divide your page in multiple component. Even if your page is having single big form, divide that in logical group. It always help to manage small chunks of code compare to big chunk.
-' And even as simple as simple entry forms are doing many things, like validation clint side and validation on server side in some case.
+' And even as simple as simple entry forms are doing many things, like validation clint side and validation
+' on server side in case of something like username is available and also valid username.
 ' Features like auto complete requires both server and client side code.
 
----
+***
 
 ### Component Model
 
-' Before we talk about Component model let's take a little break
+' We reached almost half way, so it is time for little break
 
 ---
 
@@ -305,13 +360,70 @@
 ### Domain Model on Client Side
 
 ```fsharp
+type Validate = {
+    IsValid : bool
+    Message : string
+}
+
+type Person = {
+    FirstName : string
+    LastName : string
+}
+
+type PersonError = {
+    FirstName : Validate
+    LastName : Validate
+}
+
+type Model = {
+    Person : Person
+    PersonError : PersonError
+}
 ```
+
+' Most dumb domain model example to give an idea. Here, to update error message that first name should not be empty
+' you need to update, model, PersonError, Validate and Message. It is three level deep.
+' You can always use lenses for this, but if you need to use lenses than you are doing something wrong.
+' As model represent client keep it as flat as possible. Use of lenses will become more and more complicated as application grows
+' Instead divide model in multiple models in MVU fashion
 
 ---
 
 ### Flatten the model
 
 ```fsharp
+type Validate = {
+    IsValid : bool
+    Message : string
+}
+
+type FirstName = {
+    Value : string
+    Valid : Validate
+}
+
+type LastName = {
+    Value : string
+    Valid : Validate
+}
+
+type Person = {
+    FirstName : FirstName
+    LastName : LastName
+}
+
+```
+---
+
+##### OR
+
+```fsharp
+type Person = {
+    FirstName: string
+    FirstNameErr : Validate
+    LastName : string
+    LastNameErr : Validate
+}
 ```
 
 ***
@@ -323,13 +435,116 @@
 ### Single Responsibly Principal
 
 ```fsharp
+type Msg =
+    | ChangeValue of string
+    | Changed of string
+
+let init () = { Value = "" }, Cmd.none
+
+let update (msg:Msg) (model:Model) =
+    match msg with
+    | ChangeValue newValue ->
+        let updateValue = newValue.ToUpper()
+        model, Cmd.ofMsg (Changed updateValue)
+    | Changed updatedValue ->
+        { Value = updatedValue}, Cmd.none
+```
+
+' One command is doing one and only one thing. Here I capitalizing everything coming in. Just because why not? But you can do validation or and post to data to server
+' When things are good to go pass it to Changed message. It is confirmation that everything is good to go.
+
+---
+
+### Another way to Look at it
+
+```fsharp
+type Command = | ChangeValue of string
+type Event = | Changed of string
+
+type Msg =
+    | Command of Command
+    | Event of Event
+
+let init () = { Value = "" }, Cmd.none
+
+let processCommand (msg : Command) (model : Model) =
+    match msg with
+    | ChangeValue newValue ->
+        let updateValue = newValue.ToUpper()
+        model, Cmd.ofMsg (Event (Changed updateValue))
+
+let processEvent (msg : Event) (model: Model) =
+    match msg with
+    | Changed value ->
+        { Value = value}, Cmd.none
+
+
 ```
 
 ---
+
+```fsharp
+
+let update (msg:Msg) (model:Model) =
+    match msg with
+    | Command c -> processCommand c model
+    | Event e -> processEvent e model
+```
+
+---
+
+
 ### Subscribe is there to Use
 
 ```fsharp
+// Types
+type Model = CurrentTime of DateTime
+type Messages = Tick of DateTime
+
+// State
+let initialState() =
+    CurrentTime DateTime.Now, Cmd.none
+
+let update (Tick next) (CurrentTime _time) =
+    CurrentTime next, Cmd.none
+
+let timer initial =
+    let sub dispatch =
+        Browser.window.setInterval(fun _ ->
+            dispatch (Tick DateTime.Now)
+        , 1000) |> ignore
+    Cmd.ofSub sub
 ```
+
+' This is famous subscribe example. But it is way more powerful than this. Let's have an another example where it can be used.
+
+---
+
+### Real Time or Reactive Application
+
+```fsharp
+let subscribe =
+        let socketSubscription dispatch =
+            let eventSourceOptions = createEmpty<IEventSourceOptions>
+            eventSourceOptions.handlers <- createObj [
+                "onMessage" ==>
+                    fun (msg: ServerEventMessage) ->
+                        printfn "onMessage %A" msg.json
+                "chat" ==>
+                    fun (msg : OutputMessages) ->
+                                msg |> (SSESuccessMessages >> dispatch)
+            ]
+
+            let channels = [|"home"; ""|]
+            SSClient.ServerEventsClient.Create(baseUrl
+            , new List<string>(channels)
+            , eventSourceOptions
+            ).start() |> ignore
+        Cmd.ofSub socketSubscription
+```
+
+' Say it real time if you are little old school person or reactive application if you like to use buzzword. Subscribe is pretty useful in those scenarios.
+' And now also you will get why divide MSG in Command and Event. You can subscribe to Events from Subscribe to update the UI in reactive fashion.
 
 ***
 
@@ -338,31 +553,81 @@
 ---
 - data-background-image: images/catgroup.jpg
 
+```fsharp
+let root model dispatch =
+    Container.container[ Container.IsFluid ][
+        documentTable model dispatch
+    ]
+```
+
+
+' View should be Small & <s>Dumb</s> cute. It should be representation of whole page of application. So, if someone is reading that get the whole idea of page.
+
 ---
 
 ### Use CSS Wrappers like Fulma
 
 ```fsharp
+form [ ]
+        [ // Email field
+            Field.div [ ]
+                [ Label.label [ ]
+                    [ str "Email" ]
+                  Control.div [ Control.HasIconLeft
+                                Control.HasIconRight ]
+                    [ Input.email [ Input.Color IsDanger
+                                    Input.DefaultValue "hello@" ]
+                      Icon.faIcon [ Icon.Size IsSmall; Icon.IsLeft ]
+                        [ Fa.icon Fa.I.Envelope ]
+                      Icon.faIcon [ Icon.Size IsSmall; Icon.IsRight ]
+                        [ Fa.icon Fa.I.Warning ] ]
+                  Help.help [ Help.Color IsDanger ]
+                    [ str "This email is invalid" ] ] ]
 ```
 
 ***
 
 ### Why I chose Elmish?
 
-' If everything is possible in Elm then why I choose Elmish? Let me explain how I see Elm and Elmish and then I ll explain why I choose one over another.
+- One Language of for Server, Client (Web & Mobile), Data Science / ML & Data Processing etc.
+- Possible to leverage JavaScript libraries (Stateless)
+- Possible to leverage React libraries (Stateless)
+- Because of all these I can leverage my experience
+
+' If everything is possible in Elm then why I choose Elmish?
+' Here are couple of reason.
 
 ---
 
 ### Recharts
 
 ```fsharp
+let lineChartSample =
+    lineChart
+        [ margin 5. 20. 5. 0.
+          Chart.Width 600.
+          Chart.Height 300.
+          Chart.Data data ]
+        [ line
+            [ Cartesian.Type Monotone
+              Cartesian.DataKey "uv"
+              P.Stroke "#8884d8"
+              P.StrokeWidth 2. ]
+            []
+          cartesianGrid
+            [ P.Stroke "#ccc"
+              P.StrokeDasharray "5 5" ]
+            []
+          xaxis [Cartesian.DataKey "name"] []
+          yaxis [] []
+          tooltip [] []
+        ]
 ```
-' Rechart code to give example that how easy it is to use react libraries.
+' Here is Rechart example in F#. No need to create graph library from bottom up. BTW even ReChart is using D3 to draw charts.
 
 
 ***
-
-## Thank You
+- data-background-image: images/catthankyou.gif
 
 ---
 
@@ -384,7 +649,8 @@
 
 - Fuzzy Cloud - [https://fuzzycloud.in/](https://fuzzycloud.in/)
 - Fable Compiler @ Twitter - [@FableCompiler](https://twitter.com/FableCompiler)
-- Me @ Twitter - [@kunjee](https://twitter.com/kunjee)
+- Me (Kunjan Dalal) @ Twitter - [@kunjee](https://twitter.com/kunjee)
+
 
 ' Fuzzy Cloud is consulting things I started for almost a year. I am available for training and consulting for everything related to Functional Programming.
 ' I also have my visiting card with me if any one like to have.
