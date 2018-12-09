@@ -68,13 +68,13 @@
         <div class="slides">
             <section >
 <h2>Scaling Fable Elmish / Elm Application</h2>
-<h3>A Experience Report By</h3>
+<h3>An Experience Report By</h3>
 <br />
 <h3>Kunjan Dalal</h3>
 <h3>@kunjee</h3>
 <br />
 <aside class="notes">
-Skip the Intro because of less time<br/>
+Hello Hello. My self Kunjan Dalal, also known as Kunjee. I will be skipping other parts of the intro; because we are having some time issues.<br/>
 </aside>
 </section>
 <section >
@@ -100,7 +100,7 @@ Skip the Intro because of less time<br/>
 <li>Thank You!!!</li>
 </ul>
 <aside class="notes">
-This talk was around 45 mins but cut down due to other wonderful talk. So, I have to do tight editing on slides. We have lot to cover so let's get started. I am cutting down few basic stuff as you might already learn that in wonderful talks happens before this one<br/>
+This talk was 45 mins long when I submitted. It has been cut down to 20 minutes due to other nice talks in the same area. So, I will also be cutting down a few things you might already know from other talks at this conference.<br/>
 </aside>
 </section>
 <section >
@@ -108,8 +108,8 @@ This talk was around 45 mins but cut down due to other wonderful talk. So, I hav
 <p><img src="images/riddler.gif" alt="" /></p>
 <aside class="notes">
 How many of you know about Elm?<br/>
-How many are using Elm in production application? As a whole app or part of it?<br/>
-This is important question -> How many of you feels that they attend a conference and that nice demo application never get converted to full blown application?<br/>
+How many are using Elm in a production application? A whole application or may be part of it?<br/>
+Here is an important question. How many of you feel that the nice demo application is shown in the conference never get converted to the full-blown application?<br/>
 </aside>
 </section>
 <section >
@@ -118,15 +118,18 @@ This is important question -> How many of you feels that they attend a conferenc
 <h3>Demo</h3>
 </s>
 <aside class="notes">
-We will not see any demo today<br/>
-Instead will talk about past, more about what is possible in contrast to what can be possible<br/>
+We will not see any demo today.<br/>
+Instead will talk about the past, more about what is possible in contrast to what can be possible.<br/>
 </aside>
 </section>
 <section >
-<h3>Why Code Samples are in F#?</h3>
+<h3>Why Code Samples will be  in F#?</h3>
 <blockquote>
-<p>It is a mainstream - general purpose functional programming language for your daily web and mobile need. It is strongly typed and it works everywhere. It is #fsharp</p>
+<p>It is a general-purpose functional programming language. It is a very much mainstream language. It works for web and mobile. It is very much strongly type language. It is F#.</p>
 </blockquote>
+<aside class="notes">
+In this slides, all code samples will be in F#.<br/>
+</aside>
 </section>
 </section>
 <section >
@@ -139,7 +142,7 @@ Instead will talk about past, more about what is possible in contrast to what ca
 <p>Elmish implements core abstractions that can be used to build Fable applications following the “model view update” style of architecture, as made famous by Elm.</p>
 </blockquote>
 <aside class="notes">
-There are two different things in Fable Elmish. Fable and Fable-Elmish or Elmish it self. Let's have a look at both.<br/>
+There are two different things in Fable Elmish. Fable and Fable-Elmish or Elmish generally speaking. Let's have a look at both.<br/>
 </aside>
 </section>
 <section >
@@ -188,8 +191,7 @@ There are two different things in Fable Elmish. Fable and Fable-Elmish or Elmish
 </tr>
 </table>
 <aside class="notes">
-Simple F# code with it's specific Unit of Measure feature. A tight guard against how you define units. Specially useful in Finance and Science / Mathematics obviously.<br/>
-It is basically like Scalajs or Cloujure Script converting respective language to JavaScript.<br/>
+Here is a simple F# code with its specific Unit of Measure feature. A tight guard against how you define units. It is very helpful in the industry like Finance, Biology, Research etc.<br/>
 </aside>
 </section>
 <section >
@@ -217,7 +219,7 @@ It is basically like Scalajs or Cloujure Script converting respective language t
             (sampleValue<span class="n">1</span>)(sampleValue<span class="n">2</span>)(sampleValue<span class="n">3</span>);
 </code></pre></td></tr></table>
 <aside class="notes">
-Look at this . A very readable JavaScript. Which then pass on to Bable to boil down to normal JavaScript which can be understood by browser.<br/>
+Have a look at this. A very readable JavaScript. Which then pass on to Bable to boil down to normal JavaScript which can be understood by the browser.<br/>
 </aside>
 </section>
 </section>
@@ -243,7 +245,7 @@ Look at this . A very readable JavaScript. Which then pass on to Bable to boil d
 </tr>
 </table>
 <aside class="notes">
-Your routine model. With 1 property of type String. To change that we need to pass message of value string.<br/>
+Your routine model with a single property of type String. To change that we need to pass the message of value string.<br/>
 </aside>
 </section>
 <section >
@@ -269,7 +271,7 @@ Your routine model. With 1 property of type String. To change that we need to pa
 </tr>
 </table>
 <aside class="notes">
-Init is initializing with empty value and then update will take care of every change.<br/>
+Init is initializing with an empty value and then update will take care of every change happen in the application.<br/>
 </aside>
 </section>
 <section >
@@ -299,7 +301,7 @@ Init is initializing with empty value and then update will take care of every ch
 </tr>
 </table>
 <aside class="notes">
-Here is simple view which takes the value, pass in to update and show the updated value.<br/>
+Here is a simple view that takes the value and shows it to a user. Also, it can dispatch a message to update method.<br/>
 </aside>
 </section>
 <section >
@@ -319,23 +321,22 @@ Here is simple view which takes the value, pass in to update and show the update
 </tr>
 </table>
 <aside class="notes">
-And here is wire up code. So, not much different then your regular Elm code. Or for that case any code which follows elm architecture.<br/>
+And here is wire up a code. Not much different than your regular Elm code. It is following the elm architecture.<br/>
 </aside>
-</section>
-</section>
-<section >
+<!-- ***
 <h3>Back End - Front End - Back End - Front End - Back End</h3>
 <p><img src="images/backfront.gif" alt="" /></p>
 <aside class="notes">
-I love back end and made a career out of it, and I strongly believe that front end is also required good architecture, Nowadays it is more required. So, today will be talking about that front end part.<br/>
+I love back end and made a career out of it, and I strongly believe that front end is also required good architecture, Nowadays it is more required. So, today will be talking about that front end part. --><br/>
 </aside>
+</section>
 </section>
 <section >
 <section >
 <h3>What is SPA ?</h3>
 <p><img src="images/Deathly_Hallows_Sign.svg" alt="" /></p>
 <aside class="notes">
-what promise was simple thing. html, js and css. And you know SPA. You know everything about it. But<br/>
+When they told us about Single Page Application, they promise us that you don't need to any other thing other than HTML, javascript, and CSS. They promise a triangle of power, but instead what we got?<br/>
 </aside>
 </section>
 <section data-background-image="images/triangles.gif">
@@ -343,14 +344,14 @@ what promise was simple thing. html, js and css. And you know SPA. You know ever
 </section>
 <section data-background-image="images/oldman.jpeg">
 <aside class="notes">
-Today I will be providing tips and tricks. And I hope you will take it as it is just like you will take words of wise old man without asking for more reasons. Respecting time noting else.<br/>
+ Today I will be providing tips and tricks for your Elm / Elmish application. I wish you will take the advice as it is. Just like we used to take advise of a wise old man. Respecting time nothing else.<br/>
 </aside>
 </section>
 <section >
 <section >
 <h3>Model - View - Update</h3>
 <aside class="notes">
-In MVU architecture I feel that model is most important. As it is message between update and view. And who ever control the message, controls the narrative.<br/>
+In MVU architecture I feel that the model is the most important thing. It is a message between update and view, and whoever controls the message controls the narrative.<br/>
 </aside>
 </section>
 <section data-background-image="images/news.gif">
@@ -440,9 +441,8 @@ So, my tips and tricks will start from that only.<br/>
 </tr>
 </table>
 <aside class="notes">
-User can access on module and one can't. If you are starting your application and you are having user authentication then do separate them. For starting 2 - 3 pages it feels like<br/>
-it is ok to pages together. But as you grow there will be a lot more repeated code to check user before reaching out every page.<br/>
-Pro tip - Use JWT if you are still not using it. It is nice to have when you are developing State less application<br/>
+An Authenticated user can access the application module and all users can access the Authenticate module. If you are starting your application and you are having user authentication in your application then you surely like to do this. If you are having 2 - 3 pages where a user needs to be authenticated then it is ok but not more than that; you seriously like to save your self from repeated user verification code.<br/>
+Pro tip - Use JWT if you are still not using it. It is nice to have when you are developing a Stateless application.<br/>
 </aside>
 </section>
 <section >
@@ -476,9 +476,8 @@ Pro tip - Use JWT if you are still not using it. It is nice to have when you are
 </tr>
 </table>
 <aside class="notes">
-There are two ways of writing page. As shown here. But having page model as option type always help. You are only loading data that is required for that specific page.<br/>
-Pro tip - You can group pages by Navigation. So, one less naming problem solve. Also, it helps to have authorization feature abstracted away. So, user is not allowed in admin<br/>
-navigation if he is not admin<br/>
+There are two ways of writing page-model. But having page model as option type always helps. You are only loading data that is required for a page, nothing else.<br/>
+Pro tip - You can group pages by Navigation. So, one less naming problem solve.<br/>
 </aside>
 </section>
 <section >
@@ -498,10 +497,9 @@ navigation if he is not admin<br/>
 </tr>
 </table>
 <aside class="notes">
-Divide your page in multiple component. Even if your page is having single big form, divide that in logical group. It always help to manage small chunks of code compare to big chunk.<br/>
-And even as simple as simple entry forms are doing many things, like validation clint side and validation<br/>
-on server side in case of something like username is available and also valid username.<br/>
-Features like auto complete requires both server and client side code.<br/>
+Divide your page into multiple components. Even if your page is having a single big entry form, divide that into a logical group. It always helps to manage small chunks of code compared to a big chunk.<br/>
+Even simple entry forms are doing many things, like validation on a client-side and validation on the server side as if a username is available or not.<br/>
+Features, like autocomplete will, requires a server and client-side code.<br/>
 </aside>
 </section>
 </section>
@@ -509,7 +507,7 @@ Features like auto complete requires both server and client side code.<br/>
 <section >
 <h3>Component Model</h3>
 <aside class="notes">
-We reached almost half way, so it is time for little break<br/>
+We almost reached halfway, so it is time for a little break.<br/>
 </aside>
 </section>
 <section >
@@ -563,11 +561,7 @@ We reached almost half way, so it is time for little break<br/>
 </tr>
 </table>
 <aside class="notes">
-Most dumb domain model example to give an idea. Here, to update error message that first name should not be empty<br/>
-you need to update, model, PersonError, Validate and Message. It is three level deep.<br/>
-You can always use lenses for this, but if you need to use lenses than you are doing something wrong.<br/>
-As model represent client keep it as flat as possible. Use of lenses will become more and more complicated as application grows<br/>
-Instead divide model in multiple models in MVU fashion<br/>
+Most dumb domain model example to give an idea. Here just to show that first name should not be empty I need to update model, then Person-Error, then Validate and then message. It is three level deep. One can always use lenses to update them, but if you need to use lenses then you are doing something wrong. As model represent the view, we need to keep it as flat as possible. Use of lenses will become more and more complicated as an application grows. Instead, divide model in multiple models in MVU fashions.<br/>
 </aside>
 </section>
 <section >
@@ -672,8 +666,8 @@ Instead divide model in multiple models in MVU fashion<br/>
 </tr>
 </table>
 <aside class="notes">
-One command is doing one and only one thing. Here I capitalizing everything coming in. Just because why not? But you can do validation or and post to data to server<br/>
-When things are good to go pass it to Changed message. It is confirmation that everything is good to go.<br/>
+One command should be doing one and only one thing. Here I capitalizing everything coming into the update function. Just because why not?  But you can do validation or and post to data to a server.<br/>
+As command processes, the data, pass it to Changed message. It is confirmation that everything is good to go.<br/>
 </aside>
 </section>
 <section >
@@ -776,7 +770,7 @@ When things are good to go pass it to Changed message. It is confirmation that e
 </tr>
 </table>
 <aside class="notes">
-This is famous subscribe example. But it is way more powerful than this. Let's have an another example where it can be used.<br/>
+This is a famous subscribe example. But it is way more powerful than this. Let's have another example where it can be used.<br/>
 </aside>
 </section>
 <section >
@@ -822,8 +816,7 @@ This is famous subscribe example. But it is way more powerful than this. Let's h
 </tr>
 </table>
 <aside class="notes">
-Say it real time if you are little old school person or reactive application if you like to use buzzword. Subscribe is pretty useful in those scenarios.<br/>
-And now also you will get why divide MSG in Command and Event. You can subscribe to Events from Subscribe to update the UI in reactive fashion.<br/>
+Be it Real-time or reactive application; Subscribe is pretty useful. Here you can subscribe to events those are coming from the server. Events will update the UI eventually.<br/>
 </aside>
 </section>
 </section>
@@ -845,7 +838,7 @@ And now also you will get why divide MSG in Command and Event. You can subscribe
 </tr>
 </table>
 <aside class="notes">
-View should be Small & <s>Dumb</s> cute. It should be representation of whole page of application. So, if someone is reading that get the whole idea of page.<br/>
+A view should be Small & cute. It should be a representation of the whole page. So, if someone is reading root function, s/he will get the idea.<br/>
 </aside>
 </section>
 <section >
@@ -884,21 +877,20 @@ View should be Small & <s>Dumb</s> cute. It should be representation of whole pa
 </code></pre></td>
 </tr>
 </table>
+<aside class="notes">
+It will make so much easier to write UIs with wrappers. Please use them.<br/>
+</aside>
 </section>
 </section>
 <section >
 <section >
-<h3>Why I chose Elmish?</h3>
+<h3>Why I choose Elmish?</h3>
 <ul>
 <li>One Language of for Server, Client (Web &amp; Mobile), Data Science / ML &amp; Data Processing etc.</li>
-<li>Possible to leverage JavaScript libraries (Stateless)</li>
-<li>Possible to leverage React libraries (Stateless)</li>
-<li>Because of all these I can leverage my experience</li>
+<li>Possible to leverage JavaScript libraries (Stateless one)</li>
+<li>Possible to leverage React libraries (Stateless one)</li>
+<li>Because of all these, I can leverage my experience, I acquired throughout all these years.</li>
 </ul>
-<aside class="notes">
-If everything is possible in Elm then why I choose Elmish?<br/>
-Here are couple of reason.<br/>
-</aside>
 </section>
 <section >
 <h3>Recharts</h3>
@@ -963,13 +955,12 @@ Here is Rechart example in F#. No need to create graph library from bottom up. B
 <li>Fable - <a href="https://fable.io/"><a href="https://fable.io/">https://fable.io/</a></a></li>
 </ul>
 <aside class="notes">
-Here is awesome fable link where I maintaining all awesome stuff happening in Fable<br/>
-Safe - stack is just like mean stack but everything in F#. Even if you are not interested in F# then also do check it out.<br/>
-It is recently featured for Thought works Tech radar.<br/>
-And I personally feel that every Functional Programming language should have similar kind of stack<br/>
-What the F# podcast for Elmish. Where me and Alfonso Garcia Caro was guest<br/>
+Here is an awesome fable link where I am maintaining all awesome stuff happening in Fable world.<br/>
+Safe-Stack is just like MEAN-Stack but everything in F#. Even if you are not interested in F# then also do check it out. It is featured in Thought works Tech Radar recently.<br/>
+And I personally feel that every Functional Programming language should have similar kind of stack.<br/>
+Then there is What the F# podcast, Where I and Alfonso Garcia Caro was talking about Elmish.<br/>
 There is also a link for fulma<br/>
-And fable link. Do try out Fable Repl, it is compiling whole F# code in browser it self. So, your code totally work in offline mode<br/>
+And the obvious fable link. Do try out Fable REPL, it is compiling whole F# code in the browser itself. So, your code will totally work in offline mode.<br/>
 </aside>
 </section>
 <section >
@@ -979,11 +970,11 @@ And fable link. Do try out Fable Repl, it is compiling whole F# code in browser 
 <li>Me (Kunjan Dalal) @ Twitter - <a href="https://twitter.com/kunjee">@kunjee</a></li>
 </ul>
 <aside class="notes">
-Fuzzy Cloud is consulting things I started for almost a year. I am available for training and consulting for everything related to Functional Programming.<br/>
-I also have my visiting card with me if any one like to have.<br/>
-If you have enjoyed this talk please tag Fable Compiler and me if you wish with your good comments.<br/>
-For any kind of inputs or criticism please contact me and will try to improve in next talk.<br/>
-Any questions ? Else I am available here only for today at least. Do contact me.<br/>
+Fuzzy Cloud is consulting things I started recently. I am available for training and consulting for everything related but not limited to Functional Programming.<br/>
+I am carrying my visiting card with me if anyone likes to have.<br/>
+If you have enjoyed this talk please tag Fable Compiler and me (I am totally optional) with your good comments.<br/>
+Please provide your criticism and inputs to me, I will surely try to improve for next talk.<br/>
+Any questions? Else I am available here only for today at least. Do stay in touch.<br/>
 </section>
 </section>
 
