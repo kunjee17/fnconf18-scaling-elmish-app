@@ -8,7 +8,7 @@
 
 
 ## Scaling Fable Elmish / Elm Application
-### A Experience Report By
+### An Experience Report By
 
 <br />
 ### Kunjan Dalal
@@ -68,7 +68,7 @@
 
 ---
 
-### Why Code Samples are in F#?
+### Why Code Samples will be  in F#?
 
 > It is a mainstream - general purpose functional programming language for your daily web and mobile need. It is strongly typed and it works everywhere. It is #fsharp
 
