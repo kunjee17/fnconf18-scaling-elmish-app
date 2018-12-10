@@ -221,7 +221,7 @@
 
 ![](images/Deathly_Hallows_Sign.svg)
 
-' When they told us about Single Page Application, they promise us that you don't need to any other thing other than HTML, javascript, and CSS. They promise a triangle of power, but instead what we got?
+' When they told us about Single Page Application, they promise us that you don't need to learn any other thing other than HTML, javascript, and CSS. They promise a triangle of power, but instead what we got?
 
 ---
 
@@ -319,7 +319,7 @@ type GoodPageModel =
 
 ```
 
-' There are two ways of writing page-model. But having page model as option type always helps. You are only loading data that is required for a page, nothing else.
+' There are two ways of writing page-model. But having page model as discriminated union type always helps. You are only loading data that is required for a page, nothing else.
 ' Pro tip - You can group pages by Navigation. So, one less naming problem solve.
 
 ---
@@ -444,7 +444,7 @@ let update (msg:Msg) (model:Model) =
         { Value = updatedValue}, Cmd.none
 ```
 
-' One command should be doing one and only one thing. Here I capitalizing everything coming into the update function. Just because why not?  But you can do validation or and post to data to a server.
+' One command should be doing one and only one thing. Here I capitalizing everything coming into the update function. Just because why not?  But you can do validation or and post data to a server.
 ' As command processes, the data, pass it to Changed message. It is confirmation that everything is good to go.
 
 ---
