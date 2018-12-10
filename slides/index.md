@@ -588,32 +588,36 @@ form [ ]
 
 ---
 
-### Recharts
+### React Leaflet
 
-```fsharp
-let lineChartSample =
-    lineChart
-        [ margin 5. 20. 5. 0.
-          Chart.Width 600.
-          Chart.Height 300.
-          Chart.Data data ]
-        [ line
-            [ Cartesian.Type Monotone
-              Cartesian.DataKey "uv"
-              P.Stroke "#8884d8"
-              P.StrokeWidth 2. ]
-            []
-          cartesianGrid
-            [ P.Stroke "#ccc"
-              P.StrokeDasharray "5 5" ]
-            []
-          xaxis [Cartesian.DataKey "name"] []
-          yaxis [] []
-          tooltip [] []
-        ]
-```
-' Here is Rechart example in F#. No need to create graph library from bottom up. BTW even ReChart is using D3 to draw charts.
+![](images/react-leaflet-code.gif)
 
+' Here is React Leaflet example in F#. No need to create graph library from bottom up.
+
+---
+
+![](images/react-leaflet-demo-map.gif)
+
+***
+
+### Awesome Tool Chain
+
+---
+
+### Html to Elmish
+
+![](images/htmltoelmish.gif)
+
+' Convert your html to elmish code.
+
+---
+
+### Ts 2 Fable
+
+![](images/ts2fable.gif)
+
+' And this is my favorite one.
+' Convert your typescript definitions to F#
 
 ***
 - data-background-image: images/catthankyou.gif
