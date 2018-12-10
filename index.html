@@ -893,53 +893,33 @@ It will make so much easier to write UIs with wrappers. Please use them.<br/>
 </ul>
 </section>
 <section >
-<h3>Recharts</h3>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
-<span class="l"> 2: </span>
-<span class="l"> 3: </span>
-<span class="l"> 4: </span>
-<span class="l"> 5: </span>
-<span class="l"> 6: </span>
-<span class="l"> 7: </span>
-<span class="l"> 8: </span>
-<span class="l"> 9: </span>
-<span class="l">10: </span>
-<span class="l">11: </span>
-<span class="l">12: </span>
-<span class="l">13: </span>
-<span class="l">14: </span>
-<span class="l">15: </span>
-<span class="l">16: </span>
-<span class="l">17: </span>
-<span class="l">18: </span>
-<span class="l">19: </span>
-<span class="l">20: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">lineChartSample</span> <span class="o">=</span>
-    <span class="i">lineChart</span>
-        [ <span class="i">margin</span> <span class="n">5.</span> <span class="n">20.</span> <span class="n">5.</span> <span class="n">0.</span>
-          <span class="i">Chart</span><span class="o">.</span><span class="i">Width</span> <span class="n">600.</span>
-          <span class="i">Chart</span><span class="o">.</span><span class="i">Height</span> <span class="n">300.</span>
-          <span class="i">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs3', 44)" onmouseover="showTip(event, 'fs3', 44)" class="i">Data</span> <span class="i">data</span> ]
-        [ <span class="i">line</span>
-            [ <span class="i">Cartesian</span><span class="o">.</span><span class="i">Type</span> <span class="i">Monotone</span>
-              <span class="i">Cartesian</span><span class="o">.</span><span class="i">DataKey</span> <span class="s">&quot;uv&quot;</span>
-              <span class="i">P</span><span class="o">.</span><span class="i">Stroke</span> <span class="s">&quot;#8884d8&quot;</span>
-              <span class="i">P</span><span class="o">.</span><span class="i">StrokeWidth</span> <span class="n">2.</span> ]
-            []
-          <span class="i">cartesianGrid</span>
-            [ <span class="i">P</span><span class="o">.</span><span class="i">Stroke</span> <span class="s">&quot;#ccc&quot;</span>
-              <span class="i">P</span><span class="o">.</span><span class="i">StrokeDasharray</span> <span class="s">&quot;5 5&quot;</span> ]
-            []
-          <span class="i">xaxis</span> [<span class="i">Cartesian</span><span class="o">.</span><span class="i">DataKey</span> <span class="s">&quot;name&quot;</span>] []
-          <span class="i">yaxis</span> [] []
-          <span class="i">tooltip</span> [] []
-        ]
-</code></pre></td>
-</tr>
-</table>
+<h3>React Leaflet</h3>
+<p><img src="images/react-leaflet-code.gif" alt="" /></p>
 <aside class="notes">
-Here is Rechart example in F#. No need to create graph library from bottom up. BTW even ReChart is using D3 to draw charts.<br/>
+Here is React Leaflet example in F#. No need to create graph library from bottom up.<br/>
+</aside>
+</section>
+<section >
+<p><img src="images/react-leaflet-demo-map.gif" alt="" /></p>
+</section>
+</section>
+<section >
+<section >
+<h3>Awesome Tool Chain</h3>
+</section>
+<section >
+<h3>Html to Elmish</h3>
+<p><img src="images/htmltoelmish.gif" alt="" /></p>
+<aside class="notes">
+Convert your html to elmish code.<br/>
+</aside>
+</section>
+<section >
+<h3>Ts 2 Fable</h3>
+<p><img src="images/ts2fable.gif" alt="" /></p>
+<aside class="notes">
+And this is my favorite one.<br/>
+Convert your typescript definitions to F#<br/>
 </aside>
 </section>
 </section>
