@@ -628,6 +628,7 @@ form [ ]
 - Safe Stack - [https://safe-stack.github.io/](https://safe-stack.github.io/)
 - WTF# Elmish - [https://wtfsharp.net/wtf-is-elmish](https://wtfsharp.net/wtf-is-elmish)
 - Fulma - [https://mangelmaxime.github.io/Fulma/](https://mangelmaxime.github.io/Fulma/)
+- Balero - [https://github.com/intellifactory/bolero](https://github.com/intellifactory/bolero)
 - Fable - [https://fable.io/](https://fable.io/)
 
 ' Here is an awesome fable link where I am maintaining all awesome stuff happening in Fable world.
