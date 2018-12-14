@@ -35,7 +35,7 @@
 <!-- - The View -->
 <!-- - The Update -->
 - Tips and Tricks for Scaling your Application
-- Why Elmish instead of Elm
+- Why Elmish?
 - <s>External JS library in Fable Elmish </s>
 - <s>External React library in Fable Elmish </s>
 - <s>SAFE stack</s>
@@ -191,7 +191,7 @@
                 str "!" ] ]
 ```
 
-' Here is a simple view that takes the value and shows it to a user. Also, it can dispatch a message to update method.
+' Here is a simple view that takes the model and shows it to a user. Also, it can dispatch a message to update method.
 
 ---
 
@@ -636,6 +636,7 @@ form [ ]
 ' And I personally feel that every Functional Programming language should have similar kind of stack.
 ' Then there is What the F# podcast, Where I and Alfonso Garcia Caro was talking about Elmish.
 ' There is also a link for fulma
+' Balero is recently released, framework where you code in Elmish pattern and it will deploy your code in web-assembly
 ' And the obvious fable link. Do try out Fable REPL, it is compiling whole F# code in the browser itself. So, your code will totally work in offline mode.
 
 ---
@@ -649,4 +650,4 @@ form [ ]
 ' I am carrying my visiting card with me if anyone likes to have.
 ' If you have enjoyed this talk please tag Fable Compiler and me (I am totally optional) with your good comments.
 ' Please provide your criticism and inputs to me, I will surely try to improve for next talk.
-' Any questions? Else I am available here only for today at least. Do stay in touch.
+' Any questions? Else I am available here only for today and tomorrow. Do stay in touch.
